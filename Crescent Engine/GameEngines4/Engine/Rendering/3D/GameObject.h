@@ -29,12 +29,53 @@ public:
 	void SetTag(std::string tag_);
 	void SetHit(bool hit_, int buttonType_);
 
-	template<typename Component>
-	void AddComponent(); 
-	template<typename Component>
-	Component GetComponent(); 
-	template<typename Component>
-	void RemoveComponent(); 
+	template<typename TComponent>
+	void AddComponent() {
+		TComponent* newComponent = new TComponent();
+
+		if (dynamic_cast<Component*>(newComponent) == nullptr) {
+			Debugger::FatalError("New object is NOT a child of the Component base class!", "GameObject.cpp", __LINE__);
+			delete newComponent; //deleting the component  
+			newComponent = nullptr;
+
+			return; //Stop the function 
+		}
+
+		if (GetComponent<TComponent>() != nullptr) {
+			Debugger::FatalError("Game Object has too many of the same component!", "GameObject.cpp", __LINE__);
+			delete newComponent; //deleting the component  
+			newComponent = nullptr;
+
+			return; //Stop the function
+		}
+
+		ComponentObjects.push_back(newComponent);
+		newComponent->OnCreate(this);
+	}
+
+	template<typename TComponent>
+	TComponent* GetComponent() {
+		for (auto componentObject : ComponentObjects) {
+			if (dynamic_cast<TComponent*>(componentObject)) {
+				return dynamic_cast<TComponent*>(componentObject);
+			}
+
+			else {
+				return nullptr;
+			}
+		}
+	}
+
+	template<typename TComponent>
+	void RemoveComponent() {
+		for (int i = 0; i < ComponentObjects.size(); i++) {
+			if (dynamic_cast<TComponent*>(ComponentObjects[i])) {
+				delete ComponentObjects[i];
+				ComponentObjects[i] = nullptr;
+				ComponentObjects.erase(ComponentObjects.begin() + i);
+			}
+		}
+	}
 
 private:
 	Model* model;

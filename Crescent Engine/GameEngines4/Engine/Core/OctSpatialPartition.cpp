@@ -41,7 +41,7 @@ void OctNode::OnDestroy() {
 	}
 }
 
-void OctNode::Octify(int depth_) {
+void OctNode::Octify(int depth_) { //Need to fix this, the halfs down below are adding differently depending on the cube
 	if (depth_ > 0 && this) {
 		float half = size / 2.0f;
 		children[static_cast<int>(OctChildren::OCT_TLF)] = new OctNode(glm::vec3(octBounds->minVert.x, octBounds->minVert.y + half, octBounds->minVert.z + half), half, this);
