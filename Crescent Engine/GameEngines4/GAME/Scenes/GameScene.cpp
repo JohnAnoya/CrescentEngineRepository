@@ -72,7 +72,9 @@ bool GameScene::OnCreate()
 
 	GameObject* apple = new GameObject(model1, glm::vec3(3.0f, -1.0f, 0.0f));
 	apple->SetScale(glm::vec3(0.25f));
+	apple->AddComponent<ComponentB>();
 	apple->AddComponent<ComponentA>();
+	//apple->RemoveComponent<ComponentA>();
 	SceneGraph::GetInstance()->AddGameObject(apple, "apple");
 
 	GameObject* dice = new GameObject(model2, glm::vec3(0.0f, -1.0f, 0.0f));

@@ -2,6 +2,7 @@
 #define GAMESCENE_H
 
 #include "../TesterClasses/ComponentA.h"
+#include "../TesterClasses/ComponentB.h"
 #include "../../Engine/Core/CoreEngine.h"
 #include <glm/gtx/string_cast.hpp>
 

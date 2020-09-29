@@ -160,6 +160,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="GAME\TesterClasses\ComponentB.cpp" />
     <ClCompile Include="GAME\TesterClasses\ComponentA.cpp" />
     <ClCompile Include="Engine\Math\CollisionHandler.cpp" />
     <ClCompile Include="Engine\Math\CollisionDetection.cpp" />
@@ -188,6 +189,7 @@
     <ClCompile Include="Engine\Core\OctSpatialPartition.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="GAME\TesterClasses\ComponentB.h" />
     <ClInclude Include="GAME\TesterClasses\ComponentA.h" />
     <ClInclude Include="Engine\Core\Component.h" />
     <ClInclude Include="Engine\Math\CollisionHandler.h" />

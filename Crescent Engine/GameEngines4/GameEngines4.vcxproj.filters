@@ -93,6 +93,9 @@
     <ClCompile Include="GAME\TesterClasses\ComponentA.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="GAME\TesterClasses\ComponentB.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Core\Window.h">
@@ -183,6 +186,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="GAME\TesterClasses\ComponentA.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GAME\TesterClasses\ComponentB.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
