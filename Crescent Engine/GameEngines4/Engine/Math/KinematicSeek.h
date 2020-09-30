@@ -9,11 +9,12 @@ class KinematicSeek
 public: 
 	KinematicSeek(); 
 	~KinematicSeek(); 
-	static KinematicSteeringOutput* getSteering(GameObject* gameObject_);
-	glm::vec3 newOrientation(glm::vec3 currentVelocity_); 
+	glm::vec3 getSteering(GameObject* gameObject_); 
 private: 
-	static glm::vec3 targetPosition;
-	static float maxSpeed; 
+	KinematicSteeringOutput* result;
+
+	glm::vec3 targetPosition;
+	float maxSpeed; 
 };
 #endif 
 

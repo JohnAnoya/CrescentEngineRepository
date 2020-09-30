@@ -3,8 +3,14 @@
 
 #include <glm/glm.hpp>
 
-struct KinematicSteeringOutput {
+class KinematicSteeringOutput {
+public: 
+	KinematicSteeringOutput(); 
+	~KinematicSteeringOutput(); 
+	glm::vec3 GetVelocity(); 
+	void SetVelocity(glm::vec3 velocity_);
+
+private: 
 	glm::vec3 velocity; 
-	float rotation; 
 };
 #endif

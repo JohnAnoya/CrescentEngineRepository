@@ -5,6 +5,7 @@
 #include "../../Engine/Core/Component.h"
 #include "../../Engine/Math/KinematicSteeringOutput.h"
 #include "../../Engine/Math/KinematicSeek.h"
+#include "../../Engine/Math/KinematicArrive.h"
 
 class AIComponent : public Component
 {
@@ -14,5 +15,9 @@ public:
 
 	bool OnCreate(GameObject* parent_) override;
 	void Update(const float deltaTime_) override;
+private: 
+	glm::vec3 desiredPosition; 
+	KinematicArrive* kinematicArrive; 
+	KinematicSeek* kinematicSeek; 
 };
 #endif 

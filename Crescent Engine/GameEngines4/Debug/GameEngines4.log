@@ -1,6 +1,2 @@
-﻿  KinematicSeek.cpp
-  main.cpp
-  Generating Code...
-KinematicSeek.obj : error LNK2001: unresolved external symbol "private: static struct glm::tvec3<float,0> KinematicSeek::targetPosition" (?targetPosition@KinematicSeek@@0U?$tvec3@M$0A@@glm@@A)
-KinematicSeek.obj : error LNK2001: unresolved external symbol "private: static float KinematicSeek::maxSpeed" (?maxSpeed@KinematicSeek@@0MA)
-C:\Users\RuthlessLua\Desktop\CrescentEngineRepository\Crescent Engine\Debug\GameEngines4.exe : fatal error LNK1120: 2 unresolved externals
+﻿  KinematicArrive.cpp
+  GameEngines4.vcxproj -> C:\Users\johna\Desktop\CrescentEngineRepository\Crescent Engine\Debug\GameEngines4.exe

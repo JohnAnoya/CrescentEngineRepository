@@ -49,6 +49,9 @@ void Game1::BuildScene()
 		currentScene = new GameScene();
 		break;
 
+	case 2: 
+		currentScene = new TestAIScene(); 
+		break; 
 	default:
 		currentScene = new StartScene();
 		break;
