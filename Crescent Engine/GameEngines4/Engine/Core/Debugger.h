@@ -33,8 +33,6 @@ public:
 	static void Error(const std::string& message_, const std::string& fileName_, const int line_);
 	static void FatalError(const std::string& message_, const std::string& fileName_, const int line_);
 	
-
-
 private:
 
 	static void Log(const MessageType type_, const std::string& message_, const std::string& fileName_, const int line_);

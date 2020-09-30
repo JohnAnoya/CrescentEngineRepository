@@ -1,6 +1,6 @@
-﻿  GameScene.cpp
-C:\Users\RuthlessLua\Desktop\CrescentEngineRepository\Crescent Engine\GameEngines4\Engine\Rendering\3D\GameObject.h(71,21): warning C4018: '<': signed/unsigned mismatch
-C:\Users\RuthlessLua\Desktop\CrescentEngineRepository\Crescent Engine\GameEngines4\GAME\Scenes\GameScene.cpp(77): message : see reference to function template instantiation 'void GameObject::RemoveComponent<ComponentA>(void)' being compiled
-C:\Users\RuthlessLua\Desktop\CrescentEngineRepository\Crescent Engine\GameEngines4\Engine\Rendering\3D\GameObject.h(67): warning C4715: 'GameObject::GetComponent<ComponentA>': not all control paths return a value
-C:\Users\RuthlessLua\Desktop\CrescentEngineRepository\Crescent Engine\GameEngines4\Engine\Rendering\3D\GameObject.h(67): warning C4715: 'GameObject::GetComponent<ComponentB>': not all control paths return a value
-  GameEngines4.vcxproj -> C:\Users\RuthlessLua\Desktop\CrescentEngineRepository\Crescent Engine\Debug\GameEngines4.exe
+﻿  KinematicSeek.cpp
+  main.cpp
+  Generating Code...
+KinematicSeek.obj : error LNK2001: unresolved external symbol "private: static struct glm::tvec3<float,0> KinematicSeek::targetPosition" (?targetPosition@KinematicSeek@@0U?$tvec3@M$0A@@glm@@A)
+KinematicSeek.obj : error LNK2001: unresolved external symbol "private: static float KinematicSeek::maxSpeed" (?maxSpeed@KinematicSeek@@0MA)
+C:\Users\RuthlessLua\Desktop\CrescentEngineRepository\Crescent Engine\Debug\GameEngines4.exe : fatal error LNK1120: 2 unresolved externals

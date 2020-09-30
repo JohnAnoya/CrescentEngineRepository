@@ -96,6 +96,12 @@
     <ClCompile Include="GAME\TesterClasses\ComponentB.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="GAME\TesterClasses\AIComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Math\KinematicSeek.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Core\Window.h">
@@ -189,6 +195,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="GAME\TesterClasses\ComponentB.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GAME\TesterClasses\AIComponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Math\KinematicSteeringOutput.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Math\KinematicSeek.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -3,6 +3,7 @@
 
 #include "../TesterClasses/ComponentA.h"
 #include "../TesterClasses/ComponentB.h"
+#include "../TesterClasses/AIComponent.h"
 #include "../../Engine/Core/CoreEngine.h"
 #include <glm/gtx/string_cast.hpp>
 

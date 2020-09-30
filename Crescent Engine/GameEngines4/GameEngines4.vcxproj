@@ -160,6 +160,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="GAME\TesterClasses\AIComponent.cpp" />
     <ClCompile Include="GAME\TesterClasses\ComponentB.cpp" />
     <ClCompile Include="GAME\TesterClasses\ComponentA.cpp" />
     <ClCompile Include="Engine\Math\CollisionHandler.cpp" />
@@ -174,6 +175,7 @@
     <ClCompile Include="GAME\Scenes\GameScene.cpp" />
     <ClCompile Include="Engine\FX\LightSource.cpp" />
     <ClCompile Include="Engine\Rendering\3D\LoadOBJModel.cpp" />
+    <ClCompile Include="Engine\Math\KinematicSeek.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Engine\Core\Window.cpp" />
     <ClCompile Include="Engine\Core\Timer.cpp" />
@@ -189,6 +191,8 @@
     <ClCompile Include="Engine\Core\OctSpatialPartition.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Engine\Math\KinematicSteeringOutput.h" />
+    <ClInclude Include="GAME\TesterClasses\AIComponent.h" />
     <ClInclude Include="GAME\TesterClasses\ComponentB.h" />
     <ClInclude Include="GAME\TesterClasses\ComponentA.h" />
     <ClInclude Include="Engine\Core\Component.h" />
@@ -220,6 +224,7 @@
     <ClInclude Include="Engine\Graphics\MaterialHandler.h" />
     <ClInclude Include="Engine\FX\MaterialLoader.h" />
     <ClInclude Include="Engine\Core\OctSpatialPartition.h" />
+    <ClInclude Include="Engine\Math\KinematicSeek.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Engine\Shaders\ColourFragmentShader.glsl" />

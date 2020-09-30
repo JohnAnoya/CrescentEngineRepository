@@ -41,13 +41,12 @@ void GameObject::Render(Camera* camera_)
 
 void GameObject::Update(const float deltaTime_)
 {
-	SetAngle(angle + 0.05f);
+	SetRotation(glm::vec3(1.0 + 5.0f));
 
 	for (auto componentObject : ComponentObjects) {
 		componentObject->Update(deltaTime_);
 	}
 }
-
 
 glm::vec3 GameObject::GetPosition() const
 {
