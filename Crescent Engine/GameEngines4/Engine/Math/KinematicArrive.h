@@ -9,7 +9,7 @@ class KinematicArrive
 public: 
 	KinematicArrive(); 
 	~KinematicArrive();
-	glm::vec3 getSteering(GameObject* gameObject_);
+	KinematicSteeringOutput* getSteering(GameObject* gameObject_);
 private:
 	KinematicSteeringOutput* result;
 

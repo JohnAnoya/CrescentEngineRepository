@@ -11,13 +11,23 @@ KinematicSeek::~KinematicSeek() {
 	result = nullptr; 
 }
 
-glm::vec3 KinematicSeek::getSteering(GameObject* gameObject_) {
-	//std::cout << "Updating GameObject Position:	" << gameObject_->GetPosition().x << ", " << gameObject_->GetPosition().y << ", " << gameObject_->GetPosition().z << std::endl;
-	result->SetVelocity(targetPosition - gameObject_->GetPosition());
-	result->SetVelocity(glm::normalize(result->GetVelocity()));
-	result->SetVelocity(result->GetVelocity() * maxSpeed);
+KinematicSteeringOutput* KinematicSeek::getSteering(GameObject* gameObject_) {
+	result->SetVelocity(targetPosition - gameObject_->GetPosition()); //Calculate direction vector 
+	result->SetVelocity(glm::normalize(result->GetVelocity())); //Normalize the vector  
+	result->SetVelocity(result->GetVelocity() * maxSpeed); //Set it equal to multiply itself with maxSpeed (in our case it's 5) 
 
-	std::cout << "KinematicSeek Velocity:	" << result->GetVelocity().x << ", " << result->GetVelocity().y << ", " << result->GetVelocity().z << std::endl;
+	//Apart of the rotation aspect, didn't bother making the separate function 
+	if (result->GetVelocity().length() > 0) { //Make sure we have a velocity 
+		result->SetRotation(atan2(-result->GetVelocity().x, result->GetVelocity().z));
+	}
 
-	return result->GetVelocity(); 
+	else {
+		result->SetRotation(0.0f);
+	}
+
+	//Debugging test below, allowing me to see where exactly the object is moving within the world 
+	std::cout << "Updating GameObject Position:	" << gameObject_->GetPosition().x << ", " << gameObject_->GetPosition().y << ", " << gameObject_->GetPosition().z << std::endl;
+	//std::cout << "KinematicSeek Velocity:	" << result->GetVelocity().x << ", " << result->GetVelocity().y << ", " << result->GetVelocity().z << std::endl;
+	
+	return result; 
 }

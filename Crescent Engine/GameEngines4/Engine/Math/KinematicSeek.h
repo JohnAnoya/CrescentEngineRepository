@@ -9,7 +9,7 @@ class KinematicSeek
 public: 
 	KinematicSeek(); 
 	~KinematicSeek(); 
-	glm::vec3 getSteering(GameObject* gameObject_); 
+	KinematicSteeringOutput* getSteering(GameObject* gameObject_);
 private: 
 	KinematicSteeringOutput* result;
 
