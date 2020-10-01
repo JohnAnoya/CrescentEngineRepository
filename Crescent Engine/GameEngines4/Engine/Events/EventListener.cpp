@@ -1,7 +1,6 @@
 #include "EventListener.h"
 #include "../Core/CoreEngine.h"
 
-
 EventListener::~EventListener() {
 
 }
@@ -19,9 +18,30 @@ void EventListener::Update() {
 			case SDL_MOUSEMOTION: 
 			case SDL_MOUSEWHEEL: 
 				MouseEventListener::Update(sdlEvent);
-				break;
+				break; 
+
 		default:
 				break;
+		}
+
+		switch (sdlEvent.type) {
+			case SDL_KEYDOWN:
+				switch (sdlEvent.key.keysym.scancode) {
+					case SDL_SCANCODE_W:
+					case SDL_SCANCODE_A:
+					case SDL_SCANCODE_S:
+					case SDL_SCANCODE_D:
+					case SDL_SCANCODE_Q:
+					case SDL_SCANCODE_E:
+						KeyEventListener::Update(sdlEvent);
+						break;
+
+					default:
+						break;
+				}
+
+			default:
+					break; 
 		}
 	}
 }

@@ -48,6 +48,9 @@ public:
 	void NotifyOfMouseMove(glm::vec2 mouse__);
 	void NotifyOfMouseScroll(int y_);
 
+	void NotifyOfKeyPressed(SDL_Keysym keyPressed_);
+	void DoubleKeyPressedRight();
+	void DoubleKeyPressedLeft();
 private:
 	CoreEngine();
 	~CoreEngine();

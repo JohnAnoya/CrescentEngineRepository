@@ -178,6 +178,7 @@
     <ClCompile Include="Engine\Rendering\3D\LoadOBJModel.cpp" />
     <ClCompile Include="Engine\Math\KinematicSeek.cpp" />
     <ClCompile Include="Engine\Math\KinematicArrive.cpp" />
+    <ClCompile Include="Engine\Events\KeyEventListener.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Engine\Core\Window.cpp" />
     <ClCompile Include="Engine\Core\Timer.cpp" />
@@ -230,6 +231,7 @@
     <ClInclude Include="Engine\Math\KinematicSeek.h" />
     <ClInclude Include="GAME\Scenes\TestAIScene.h" />
     <ClInclude Include="Engine\Math\KinematicArrive.h" />
+    <ClInclude Include="Engine\Events\KeyEventListener.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Engine\Shaders\ColourFragmentShader.glsl" />

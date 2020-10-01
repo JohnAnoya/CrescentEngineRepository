@@ -32,6 +32,7 @@ bool CoreEngine::OnCreate(std::string name_, int width_, int height_)
 
 	SDL_WarpMouseInWindow(window->GetWindow(), window->GetWidth()/2, window->GetHeight()/2);
 	MouseEventListener::RegisterEngineObject(this);
+	KeyEventListener::RegisterEngineObject(this);
 
 	ShaderHandler::GetInstance()->CreateProgram("colourShader",
 		"Engine/Shaders/ColourVertexShader.glsl",
@@ -134,7 +135,7 @@ void CoreEngine::SetCamera(Camera* camera_)
 }
 
 void CoreEngine::NotifyOfMousePressed(glm::vec2 mouse_, int buttonType_) {
-
+	
 }
 
 void CoreEngine::NotifyOfMouseReleased(glm::vec2 mouse_, int buttonType_) {
@@ -151,6 +152,40 @@ void CoreEngine::NotifyOfMouseScroll(int y_) {
 	if (camera) {
 		camera->ProcessMouseZoom(y_);
 	}
+}
+
+void CoreEngine::NotifyOfKeyPressed(SDL_Keysym keyPressed_) {
+ 	if (keyPressed_.scancode == SDL_SCANCODE_W) {
+		camera->SetPosition(glm::vec3(camera->GetPosition().x, camera->GetPosition().y, camera->GetPosition().z + (-10.0f) * timer.GetDeltaTime()));
+	 }
+
+	else if (keyPressed_.scancode == SDL_SCANCODE_A) {
+		camera->SetPosition(glm::vec3(camera->GetPosition().x + (-10.0f) * timer.GetDeltaTime(), camera->GetPosition().y, camera->GetPosition().z));
+	}
+
+	else if (keyPressed_.scancode == SDL_SCANCODE_S) {
+	   camera->SetPosition(glm::vec3(camera->GetPosition().x, camera->GetPosition().y, camera->GetPosition().z + (10.0f) * timer.GetDeltaTime()));
+	}
+
+	else if (keyPressed_.scancode == SDL_SCANCODE_D) {
+		camera->SetPosition(glm::vec3(camera->GetPosition().x + (10.0f) * timer.GetDeltaTime(), camera->GetPosition().y, camera->GetPosition().z));
+	} 
+
+	else if (keyPressed_.scancode == SDL_SCANCODE_Q) {
+		camera->SetPosition(glm::vec3(camera->GetPosition().x, camera->GetPosition().y + (10.0f) * timer.GetDeltaTime(), camera->GetPosition().z));
+	}
+
+	else if (keyPressed_.scancode == SDL_SCANCODE_E) {
+		camera->SetPosition(glm::vec3(camera->GetPosition().x, camera->GetPosition().y + (-10.0f) * timer.GetDeltaTime(), camera->GetPosition().z));
+	}
+}
+
+void CoreEngine::DoubleKeyPressedRight() {
+	camera->SetPosition(glm::vec3(camera->GetPosition().x + (15.0f) * timer.GetDeltaTime(), camera->GetPosition().y, camera->GetPosition().z + (-15.0f) * timer.GetDeltaTime()));
+}
+
+void CoreEngine::DoubleKeyPressedLeft() {
+	camera->SetPosition(glm::vec3(camera->GetPosition().x + (-15.0f) * timer.GetDeltaTime(), camera->GetPosition().y, camera->GetPosition().z + (-15.0f) * timer.GetDeltaTime()));
 }
 
 void CoreEngine::Exit()
