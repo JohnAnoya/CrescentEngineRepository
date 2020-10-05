@@ -13,6 +13,8 @@
 #include "../Graphics/TextureHandler.h"
 #include "../Camera/Camera.h"
 #include "../Events/EventListener.h"
+#include "../Rendering/2D/imgui/imgui.h"
+#include "../Rendering/2D/imgui/imgui_impl_sdl_gl3.h"
 
 class CoreEngine
 {

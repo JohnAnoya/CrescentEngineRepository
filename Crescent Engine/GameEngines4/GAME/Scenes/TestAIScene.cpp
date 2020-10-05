@@ -69,7 +69,7 @@ bool TestAIScene::OnCreate()
 
 	SceneGraph::GetInstance()->AddModel(model1);
 
-	GameObject* dice = new GameObject(model1, glm::vec3(3.0f, -1.0f, 0.0f));
+	GameObject* dice = new GameObject(model1, glm::vec3(20.0f, -1.0f, 0.0f));
 	dice->SetScale(glm::vec3(0.5f));
 	dice->AddComponent<AIComponent>();
 	//apple->AddComponent<ComponentA>();

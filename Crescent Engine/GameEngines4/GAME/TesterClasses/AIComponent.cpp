@@ -22,11 +22,11 @@ bool AIComponent::OnCreate(GameObject* parent_) {
 void AIComponent::Update(float deltaTime_) {
 	if (parent != nullptr) {
 		  /* Kinematic Seek Test */
-		parent->SetPosition(parent->GetPosition() + kinematicSeek->getSteering(parent)->GetVelocity() * deltaTime_); 
-		parent->SetAngle(kinematicSeek->getSteering(parent)->GetRotation());
+		//parent->SetPosition(parent->GetPosition() + kinematicSeek->getSteering(parent)->GetVelocity() * deltaTime_); 
+		//parent->SetAngle(kinematicSeek->getSteering(parent)->GetRotation());
 
 		 /* Kinematic Arrive Test */
-		//parent->SetPosition(parent->GetPosition() + kinematicArrive->getSteering(parent)->GetVelocity() * deltaTime_); 
-		//parent->SetAngle(kinematicArrive->getSteering(parent)->GetRotation());
+		parent->SetPosition(parent->GetPosition() + kinematicArrive->getSteering(parent)->GetVelocity() * deltaTime_); 
+		parent->SetAngle(kinematicArrive->getSteering(parent)->GetRotation());
 	}
 }

@@ -60,11 +60,17 @@ bool CoreEngine::OnCreate(std::string name_, int width_, int height_)
 
 void CoreEngine::Run()
 {
+
+	ImGui::CreateContext();
+	ImGui_ImplSdlGL3_Init(window->GetWindow());
+	ImGui::StyleColorsDark();
+
 	while (isRunning)
 	{
 		timer.UpdateFrameTick();
 		EventListener::Update();
 		Update(timer.GetDeltaTime());
+		ImGui_ImplSdlGL3_NewFrame(window->GetWindow());
 		Render();
 		SDL_Delay(timer.GetSleepTime(fps));
 	}
@@ -204,6 +210,10 @@ void CoreEngine::Update(const float deltaTime_)
 
 void CoreEngine::Render()
 {
+	bool show_demo_window = true;
+	bool show_another_window = false;
+	ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
+
 	glClearColor(0.5f, 0.5f, 0.5f, 0.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	//Rend Game
@@ -211,11 +221,25 @@ void CoreEngine::Render()
 	{
 		gameInterface->Render();
 	}
+
+	ImGui::Begin("Hierachy");
+		ImGui::SetWindowSize(ImVec2(100, 500), ImGuiCond_FirstUseEver);
+		if (ImGui::Button("Test", ImVec2(350, 20))) {
+
+		}
+	ImGui::End();
+
+	ImGui::Render();
+	ImGui_ImplSdlGL3_RenderDrawData(ImGui::GetDrawData());
+
 	SDL_GL_SwapWindow(window->GetWindow());
 }
 
 void CoreEngine::OnDestroy()
 {
+	ImGui_ImplSdlGL3_Shutdown();
+	ImGui::DestroyContext();
+
 	delete camera;
 	camera = nullptr;
 
