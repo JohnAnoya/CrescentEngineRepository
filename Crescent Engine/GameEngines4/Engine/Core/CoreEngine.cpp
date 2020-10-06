@@ -23,7 +23,7 @@ bool CoreEngine::OnCreate(std::string name_, int width_, int height_)
 	Debugger::DebugInit();
 	Debugger::SetSeverity(MessageType::TYPE_INFO);
 
-	std::wstring dir = L"C:/Users/johna/Desktop/CrescentEngineRepository/Crescent Engine/GameEngines4/Engine/Core/WatchTest";
+	std::wstring dir = L"C:/Users/RuthlessLua/Desktop/CrescentEngineRepository/Crescent Engine/GameEngines4/Engine/Core/WatchTest";
 	FW::WatchID watchID = fileWatcher.addWatch(dir, &listener, true);
 
 	window = new Window();
@@ -152,13 +152,13 @@ void CoreEngine::NotifyOfMouseReleased(glm::vec2 mouse_, int buttonType_) {
 }
 
 void CoreEngine::NotifyOfMouseMove(glm::vec2 mouse__) {
-	if (camera) {
+	if (camera && !ImGui::IsMouseDragging()) {
 		camera->ProcessMouseMovement(MouseEventListener::GetMouseOffset());
 	}
 }
 
 void CoreEngine::NotifyOfMouseScroll(int y_) {
-	if (camera) {
+	if (camera && !ImGui::IsMouseDragging()) {
 		camera->ProcessMouseZoom(y_);
 	}
 }

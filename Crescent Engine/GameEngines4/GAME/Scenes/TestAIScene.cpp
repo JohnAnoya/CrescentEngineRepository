@@ -65,16 +65,13 @@ bool TestAIScene::OnCreate()
 	CollisionHandler::GetInstance()->OnCreate(100.0f);
 
 	Model* model1 = new Model("./Resources/Models/Dice.obj", "./Resources/Materials/Dice.mtl", ShaderHandler::GetInstance()->GetShader("basicShader"));
-
-
 	SceneGraph::GetInstance()->AddModel(model1);
-
 	GameObject* dice = new GameObject(model1, glm::vec3(20.0f, -1.0f, 0.0f));
 	dice->SetScale(glm::vec3(0.5f));
 	dice->AddComponent<AIComponent>();
 	//apple->AddComponent<ComponentA>();
 	//apple->RemoveComponent<ComponentA>();
-	SceneGraph::GetInstance()->AddGameObject(dice, "apple");
+	SceneGraph::GetInstance()->AddGameObject(dice, "dice");
 
 	return true;
 }

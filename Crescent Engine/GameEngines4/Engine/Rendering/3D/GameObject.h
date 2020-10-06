@@ -59,11 +59,9 @@ public:
 			if (dynamic_cast<TComponent*>(componentObject)) {
 				return dynamic_cast<TComponent*>(componentObject);
 			}
-
-			else {
-				return nullptr;
-			}
 		}
+
+		return nullptr;
 	}
 
 	template<typename TComponent>
@@ -73,6 +71,7 @@ public:
 				delete ComponentObjects[i];
 				ComponentObjects[i] = nullptr;
 				ComponentObjects.erase(ComponentObjects.begin() + i);
+					break;
 			}
 		}
 	}
