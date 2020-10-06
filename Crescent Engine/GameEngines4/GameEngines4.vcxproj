@@ -99,6 +99,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -160,6 +161,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Engine\Core\FileWatcher\FileWatcher.cpp" />
+    <ClCompile Include="Engine\Core\FileWatcher\FileWatcherLinux.cpp" />
+    <ClCompile Include="Engine\Core\FileWatcher\FileWatcherOSX.cpp" />
+    <ClCompile Include="Engine\Core\FileWatcher\FileWatcherWin32.cpp" />
     <ClCompile Include="Engine\Math\KinematicSteeringOutput.cpp" />
     <ClCompile Include="Engine\Rendering\2D\imgui\imgui.cpp" />
     <ClCompile Include="Engine\Rendering\2D\imgui\imgui_demo.cpp" />
@@ -198,8 +203,15 @@
     <ClCompile Include="Engine\Core\OctSpatialPartition.cpp" />
     <ClCompile Include="GAME\Scenes\TestAIScene.cpp" />
     <ClCompile Include="Engine\Math\Trackball.cpp" />
+    <ClCompile Include="Engine\Core\WatchTest\Test.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Engine\Core\FileWatcher\FileWatcher.h" />
+    <ClInclude Include="Engine\Core\FileWatcher\FileWatcherImpl.h" />
+    <ClInclude Include="Engine\Core\FileWatcher\FileWatcherLinux.h" />
+    <ClInclude Include="Engine\Core\FileWatcher\FileWatcherOSX.h" />
+    <ClInclude Include="Engine\Core\FileWatcher\FileWatcherWin32.h" />
+    <ClInclude Include="Engine\Core\FileWatcher\UpdateListener.h" />
     <ClInclude Include="Engine\Math\KinematicSteeringOutput.h" />
     <ClInclude Include="Engine\Rendering\2D\imgui\imconfig.h" />
     <ClInclude Include="Engine\Rendering\2D\imgui\imgui.h" />
@@ -245,6 +257,7 @@
     <ClInclude Include="Engine\Math\KinematicArrive.h" />
     <ClInclude Include="Engine\Events\KeyEventListener.h" />
     <ClInclude Include="Engine\Math\Trackball.h" />
+    <ClInclude Include="Engine\Core\WatchTest\Test.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Engine\Shaders\ColourFragmentShader.glsl" />

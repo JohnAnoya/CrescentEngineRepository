@@ -23,6 +23,9 @@ bool CoreEngine::OnCreate(std::string name_, int width_, int height_)
 	Debugger::DebugInit();
 	Debugger::SetSeverity(MessageType::TYPE_INFO);
 
+	std::wstring dir = L"C:/Users/johna/Desktop/CrescentEngineRepository/Crescent Engine/GameEngines4/Engine/Core/WatchTest";
+	FW::WatchID watchID = fileWatcher.addWatch(dir, &listener, true);
+
 	window = new Window();
 	if (!window->OnCreate(name_, width_, height_))
 	{
@@ -206,6 +209,8 @@ void CoreEngine::Update(const float deltaTime_)
 	{
 		gameInterface->Update(deltaTime_);
 	}
+
+	fileWatcher.update();
 }
 
 void CoreEngine::Render()
@@ -237,9 +242,6 @@ void CoreEngine::Render()
 
 void CoreEngine::OnDestroy()
 {
-	ImGui_ImplSdlGL3_Shutdown();
-	ImGui::DestroyContext();
-
 	delete camera;
 	camera = nullptr;
 
@@ -254,6 +256,9 @@ void CoreEngine::OnDestroy()
 	MaterialHandler::GetInstance()->OnDestroy(); 
 	SceneGraph::GetInstance()->OnDestroy(); 
 	CollisionHandler::GetInstance()->OnDestroy();
+
+	ImGui_ImplSdlGL3_Shutdown();
+	ImGui::DestroyContext();
 	SDL_Quit();
 	exit(0);
 }

@@ -38,7 +38,7 @@ KinematicSteeringOutput* KinematicArrive::getSteering(GameObject* gameObject_) {
 	}
 
 	//Debugging test below, allowing me to see where exactly the object is moving within the world 
-	std::cout << "Updating GameObject Position:	" << gameObject_->GetPosition().x << ", " << gameObject_->GetPosition().y << ", " << gameObject_->GetPosition().z << std::endl;
+	//std::cout << "Updating GameObject Position:	" << gameObject_->GetPosition().x << ", " << gameObject_->GetPosition().y << ", " << gameObject_->GetPosition().z << std::endl;
 	//std::cout << "KinematicArrive Velocity:	" << result.GetVelocity().x << ", " << result.GetVelocity().y << ", " << result.GetVelocity().z << std::endl;
 	
 	return result;

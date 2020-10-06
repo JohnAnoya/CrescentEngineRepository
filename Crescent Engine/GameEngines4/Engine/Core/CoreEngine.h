@@ -7,6 +7,7 @@
 #include "GameInterface.h"
 #include "Scene.h"
 #include "Debugger.h"
+#include "../Core/FileWatcher/UpdateListener.h"
 #include "../Rendering/3D/GameObject.h"
 #include "../Rendering/SceneGraph.h"
 #include "../Graphics/ShaderHandler.h"
@@ -15,6 +16,8 @@
 #include "../Events/EventListener.h"
 #include "../Rendering/2D/imgui/imgui.h"
 #include "../Rendering/2D/imgui/imgui_impl_sdl_gl3.h"
+
+using namespace std::string_literals;
 
 class CoreEngine
 {
@@ -77,6 +80,12 @@ private:
 	int currentSceneNum;
 
 	Camera* camera;
+
+	// create the listener (before the file watcher - so it gets destroyed after the file watcher)
+	UpdateListener listener;
+
+	// create the file watcher object
+	FW::FileWatcher fileWatcher;
 };
 #endif
 
