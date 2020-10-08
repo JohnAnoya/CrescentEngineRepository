@@ -230,7 +230,7 @@ void CoreEngine::Render()
 	ImGui::Begin("Hierachy");
 		ImGui::SetWindowSize(ImVec2(100, 500), ImGuiCond_FirstUseEver);
 		if (ImGui::Button("Test", ImVec2(350, 20))) {
-
+			std::cout << "The Test button has been pressed!" << std::endl; 
 		}
 	ImGui::End();
 
