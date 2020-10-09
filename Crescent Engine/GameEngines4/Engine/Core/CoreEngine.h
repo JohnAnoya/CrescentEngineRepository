@@ -68,6 +68,7 @@ private:
 	void Update(const float deltaTime_);
 	void Render();
 	void OnDestroy();
+	void ImGuiDestroy(); 
 
 	Window* window;
 	bool isRunning;

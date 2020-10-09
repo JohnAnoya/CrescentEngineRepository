@@ -32,7 +32,6 @@ private:
 
 	static std::map<GLuint, std::vector<Model*>> sceneModels; 
 	static std::map<std::string, GameObject*> sceneGameObjects; 
-
 };
 
 #endif 

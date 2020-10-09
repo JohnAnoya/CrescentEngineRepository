@@ -15,6 +15,7 @@ CoreEngine::CoreEngine()
 
 CoreEngine::~CoreEngine()
 {
+	ImGuiDestroy(); 
 	OnDestroy();
 }
 
@@ -63,8 +64,7 @@ bool CoreEngine::OnCreate(std::string name_, int width_, int height_)
 
 void CoreEngine::Run()
 {
-
-	ImGui::CreateContext();
+	ImGui::CreateContext(); 
 	ImGui_ImplSdlGL3_Init(window->GetWindow());
 	ImGui::StyleColorsDark();
 
@@ -215,12 +215,11 @@ void CoreEngine::Update(const float deltaTime_)
 
 void CoreEngine::Render()
 {
-	bool show_demo_window = true;
-	bool show_another_window = false;
 	ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
 
 	glClearColor(0.5f, 0.5f, 0.5f, 0.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	
 	//Rend Game
 	if (gameInterface) 
 	{
@@ -240,6 +239,11 @@ void CoreEngine::Render()
 	SDL_GL_SwapWindow(window->GetWindow());
 }
 
+void CoreEngine::ImGuiDestroy() {
+	ImGui_ImplSdlGL3_Shutdown();
+	ImGui::DestroyContext();
+}
+
 void CoreEngine::OnDestroy()
 {
 	delete camera;
@@ -257,8 +261,6 @@ void CoreEngine::OnDestroy()
 	SceneGraph::GetInstance()->OnDestroy(); 
 	CollisionHandler::GetInstance()->OnDestroy();
 
-	ImGui_ImplSdlGL3_Shutdown();
-	ImGui::DestroyContext();
 	SDL_Quit();
 	exit(0);
 }
