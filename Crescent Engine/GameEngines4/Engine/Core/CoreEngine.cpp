@@ -7,6 +7,7 @@ CoreEngine::CoreEngine()
 {
 	window = nullptr;
 	isRunning = false;
+	propertiesWindowOpen = false; 
 	fps = 144;
 	gameInterface = nullptr;
 	currentSceneNum = 0; 
@@ -24,7 +25,7 @@ bool CoreEngine::OnCreate(std::string name_, int width_, int height_)
 	Debugger::DebugInit();
 	Debugger::SetSeverity(MessageType::TYPE_INFO);
 
-	std::wstring dir = L"C:/Users/RuthlessLua/Desktop/CrescentEngineRepository/Crescent Engine/GameEngines4/Engine/Core/WatchTest";
+	std::wstring dir = L"C:/Users/johna/Desktop/CrescentEngineRepository/Crescent Engine/GameEngines4/Engine/Core/WatchTest";
 	FW::WatchID watchID = fileWatcher.addWatch(dir, &listener, true);
 
 	window = new Window();
@@ -165,27 +166,27 @@ void CoreEngine::NotifyOfMouseScroll(int y_) {
 
 void CoreEngine::NotifyOfKeyPressed(SDL_Keysym keyPressed_) {
  	if (keyPressed_.scancode == SDL_SCANCODE_W) {
-		camera->SetPosition(glm::vec3(camera->GetPosition().x, camera->GetPosition().y, camera->GetPosition().z + (-10.0f) * timer.GetDeltaTime()));
+		camera->SetPosition(glm::vec3(camera->GetPosition().x, camera->GetPosition().y, camera->GetPosition().z + (-15.0f) * timer.GetDeltaTime()));
 	 }
 
 	else if (keyPressed_.scancode == SDL_SCANCODE_A) {
-		camera->SetPosition(glm::vec3(camera->GetPosition().x + (-10.0f) * timer.GetDeltaTime(), camera->GetPosition().y, camera->GetPosition().z));
+		camera->SetPosition(glm::vec3(camera->GetPosition().x + (-15.0f) * timer.GetDeltaTime(), camera->GetPosition().y, camera->GetPosition().z));
 	}
 
 	else if (keyPressed_.scancode == SDL_SCANCODE_S) {
-	   camera->SetPosition(glm::vec3(camera->GetPosition().x, camera->GetPosition().y, camera->GetPosition().z + (10.0f) * timer.GetDeltaTime()));
+	   camera->SetPosition(glm::vec3(camera->GetPosition().x, camera->GetPosition().y, camera->GetPosition().z + (15.0f) * timer.GetDeltaTime()));
 	}
 
 	else if (keyPressed_.scancode == SDL_SCANCODE_D) {
-		camera->SetPosition(glm::vec3(camera->GetPosition().x + (10.0f) * timer.GetDeltaTime(), camera->GetPosition().y, camera->GetPosition().z));
+		camera->SetPosition(glm::vec3(camera->GetPosition().x + (15.0f) * timer.GetDeltaTime(), camera->GetPosition().y, camera->GetPosition().z));
 	} 
 
 	else if (keyPressed_.scancode == SDL_SCANCODE_Q) {
-		camera->SetPosition(glm::vec3(camera->GetPosition().x, camera->GetPosition().y + (10.0f) * timer.GetDeltaTime(), camera->GetPosition().z));
+		camera->SetPosition(glm::vec3(camera->GetPosition().x, camera->GetPosition().y + (15.0f) * timer.GetDeltaTime(), camera->GetPosition().z));
 	}
 
 	else if (keyPressed_.scancode == SDL_SCANCODE_E) {
-		camera->SetPosition(glm::vec3(camera->GetPosition().x, camera->GetPosition().y + (-10.0f) * timer.GetDeltaTime(), camera->GetPosition().z));
+		camera->SetPosition(glm::vec3(camera->GetPosition().x, camera->GetPosition().y + (-15.0f) * timer.GetDeltaTime(), camera->GetPosition().z));
 	}
 }
 
@@ -219,19 +220,48 @@ void CoreEngine::Render()
 
 	glClearColor(0.5f, 0.5f, 0.5f, 0.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	
+
 	//Rend Game
-	if (gameInterface) 
+	if (gameInterface)
 	{
 		gameInterface->Render();
 	}
 
 	ImGui::Begin("Hierachy");
 		ImGui::SetWindowSize(ImVec2(100, 500), ImGuiCond_FirstUseEver);
+
 		if (ImGui::Button("Test", ImVec2(350, 20))) {
 			std::cout << "The Test button has been pressed!" << std::endl; 
 		}
+
+		std::map<std::string, GameObject*> sceneGameObjects = SceneGraph::GetInstance()->GetSceneGameObjects();
+		std::map<std::string, GameObject*>::iterator it;
+		for (it = sceneGameObjects.begin(); it != sceneGameObjects.end(); it++) {
+			 
+			if (ImGui::Button(it->second->GetTag().c_str(), ImVec2(350, 20))) {
+				propertiesWindowOpen = true; 
+				selectedObject = it->second->GetTag();
+			}
+		}
 	ImGui::End();
+
+	if (propertiesWindowOpen) {
+		if (setInitialObjectPos == false) {
+			setInitialObjectPos = true; 
+			Position[0] = SceneGraph::GetInstance()->GetGameObject(selectedObject)->GetPosition().x;
+			Position[1] = SceneGraph::GetInstance()->GetGameObject(selectedObject)->GetPosition().y;
+			Position[2] = SceneGraph::GetInstance()->GetGameObject(selectedObject)->GetPosition().z;
+		}
+
+		ImGui::Begin("Properties Panel");
+			ImGui::Text("Currently Editing: %s", selectedObject.c_str());
+			ImGui::Text("Position X:"); 
+			ImGui::SameLine();
+			ImGui::SliderFloat("", &Position[0], Position[0] - 1.0f, Position[0] + 1.0f);
+
+			SceneGraph::GetInstance()->GetGameObject(selectedObject)->SetPosition(glm::vec3(Position[0], Position[1], Position[2]));
+		ImGui::End();
+	}
 
 	ImGui::Render();
 	ImGui_ImplSdlGL3_RenderDrawData(ImGui::GetDrawData());

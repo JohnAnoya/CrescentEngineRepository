@@ -88,6 +88,12 @@ GameObject* SceneGraph::GetGameObject(std::string tag_){
 	}
 }
 
+std::map<std::string, GameObject*> SceneGraph::GetSceneGameObjects() {
+	if (sceneGameObjects.size() > 0) {
+		return sceneGameObjects;
+	}
+}
+
 void SceneGraph::Update(const float deltaTime_) {
 	for (auto gameObjects : sceneGameObjects) {
 		gameObjects.second->Update(deltaTime_);

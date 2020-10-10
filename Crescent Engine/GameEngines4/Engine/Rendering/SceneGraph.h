@@ -20,6 +20,7 @@ public:
 	void AddModel(Model* model_); 
 	void AddGameObject(GameObject* gameObject_, std::string tag_ = ""); 
 	GameObject* GetGameObject(std::string tag_); 
+	std::map<std::string, GameObject*> GetSceneGameObjects(); 
 
 	void Update(const float deltaTime_); 
 	void Render(Camera* camera_);

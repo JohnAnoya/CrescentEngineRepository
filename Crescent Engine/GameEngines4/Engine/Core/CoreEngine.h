@@ -82,6 +82,11 @@ private:
 
 	Camera* camera;
 
+	std::string selectedObject;
+	bool propertiesWindowOpen;
+	bool setInitialObjectPos;
+	float Position[3];
+
 	// create the listener (before the file watcher - so it gets destroyed after the file watcher)
 	UpdateListener listener;
 
