@@ -308,5 +308,6 @@
     <None Include="Engine\Shaders\ColourFragmentShader.glsl" />
     <None Include="Engine\Shaders\VertexShader.glsl" />
     <None Include="Engine\Shaders\FragementShader.glsl" />
+    <None Include="packages.config" />
   </ItemGroup>
 </Project>
