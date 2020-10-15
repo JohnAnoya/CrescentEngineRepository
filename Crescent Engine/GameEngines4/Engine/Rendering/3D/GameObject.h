@@ -29,9 +29,9 @@ public:
 	void SetTag(std::string tag_);
 	void SetHit(bool hit_, int buttonType_);
 
-	template<typename TComponent>
-	void AddComponent() {
-		TComponent* newComponent = new TComponent();
+	template<typename TComponent, typename ... Args>
+	void AddComponent(Args&&... args_) {
+		TComponent* newComponent = new TComponent(std::forward<Args>(args_)...);
 
 		if (dynamic_cast<Component*>(newComponent) == nullptr) {
 			Debugger::FatalError("New object is NOT a child of the Component base class!", "GameObject.cpp", __LINE__);

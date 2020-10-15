@@ -3,3 +3,4 @@
 [INFO]: Creating Start Scene in: StartScene.cpp on line: 16
 [INFO]: Engine launched successfully in: CoreEngine.cpp  on line: 61
 [INFO]: Creating Game Scene in: GameScene.cpp on line: 52
+[FATAL_ERROR]: Failed to set FMOD 3DListenerAttributes!in: AudioHandler.cpp on line: 51

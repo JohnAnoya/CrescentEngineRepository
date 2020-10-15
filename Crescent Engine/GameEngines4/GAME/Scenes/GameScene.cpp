@@ -53,6 +53,7 @@ bool GameScene::OnCreate()
 
 	CoreEngine::GetInstance()->SetCamera(new Camera);
 	CoreEngine::GetInstance()->GetCamera()->SetPosition(glm::vec3(0.0f, 0.0f, 4.0f));
+	AudioHandler::GetInstance()->InitializeAudio(CoreEngine::GetInstance()->GetCamera()->GetPosition());
 
 	lightSource = new LightSource(glm::vec3(0.0f), 0.0f, 0.0f, glm::vec3(0.0f));
 	lightSource->SetPosition(glm::vec3(0.0f, 0.0f, 4.0f));
@@ -73,8 +74,9 @@ bool GameScene::OnCreate()
 	GameObject* apple = new GameObject(model1, glm::vec3(3.0f, -1.0f, 0.0f));
 	apple->SetScale(glm::vec3(0.25f));
 	//apple->AddComponent<AIComponent>();
-	apple->AddComponent<ComponentA>();
-	apple->RemoveComponent<ComponentA>();
+	//apple->AddComponent<ComponentA>();
+	//apple->RemoveComponent<ComponentA>();
+	apple->AddComponent<AudioSource>("Music1.mp3", false, true, true);
 	SceneGraph::GetInstance()->AddGameObject(apple, "apple");
 
 	GameObject* dice = new GameObject(model2, glm::vec3(0.0f, -1.0f, 0.0f));

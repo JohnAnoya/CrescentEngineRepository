@@ -290,6 +290,7 @@ void CoreEngine::OnDestroy()
 	MaterialHandler::GetInstance()->OnDestroy(); 
 	SceneGraph::GetInstance()->OnDestroy(); 
 	CollisionHandler::GetInstance()->OnDestroy();
+	AudioHandler::GetInstance()->OnDestroy(); 
 
 	SDL_Quit();
 	exit(0);

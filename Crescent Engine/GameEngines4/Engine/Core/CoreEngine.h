@@ -12,11 +12,11 @@
 #include "../Rendering/SceneGraph.h"
 #include "../Graphics/ShaderHandler.h"
 #include "../Graphics/TextureHandler.h"
+#include "../Graphics/AudioHandler.h"
 #include "../Camera/Camera.h"
 #include "../Events/EventListener.h"
 #include "../Rendering/2D/imgui/imgui.h"
 #include "../Rendering/2D/imgui/imgui_impl_sdl_gl3.h"
-
 
 using namespace std::string_literals;
 

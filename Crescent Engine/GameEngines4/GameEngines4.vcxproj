@@ -22,6 +22,7 @@
     <VCProjectVersion>16.0</VCProjectVersion>
     <ProjectGuid>{28D6E422-ECAD-40AE-B3D9-5B23977E5B0B}</ProjectGuid>
     <RootNamespace>GameEngines4</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -70,7 +71,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\GameDev\OpenGL\include;C:\GameDev\SDL\include;$(IncludePath)</IncludePath>
+    <IncludePath>C:\GameDev\OpenGL\include;C:\GameDev\SDL\include;C:\GameDev\FMOD\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
@@ -104,8 +105,8 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\GameDev\OpenGL\lib;C:\GameDev\SDL\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SDL2.lib;SDL2_image.lib;SDL2main.lib;SDL2test.lib;glew32.lib;glew32s.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\GameDev\OpenGL\lib;C:\GameDev\SDL\lib;C:\GameDev\FMOD\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL2.lib;SDL2_image.lib;SDL2main.lib;SDL2test.lib;glew32.lib;glew32s.lib;opengl32.lib;fmod_vc.lib;fmodL_vc.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -161,10 +162,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="GAME\TesterClasses\AudioSource.cpp" />
     <ClCompile Include="Engine\Core\FileWatcher\FileWatcher.cpp" />
     <ClCompile Include="Engine\Core\FileWatcher\FileWatcherLinux.cpp" />
     <ClCompile Include="Engine\Core\FileWatcher\FileWatcherOSX.cpp" />
     <ClCompile Include="Engine\Core\FileWatcher\FileWatcherWin32.cpp" />
+    <ClCompile Include="Engine\Graphics\AudioHandler.cpp" />
     <ClCompile Include="Engine\Math\KinematicSteeringOutput.cpp" />
     <ClCompile Include="Engine\Rendering\2D\imgui\imgui.cpp" />
     <ClCompile Include="Engine\Rendering\2D\imgui\imgui_demo.cpp" />
@@ -206,12 +209,14 @@
     <ClCompile Include="Engine\Core\WatchTest\Test.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="GAME\TesterClasses\AudioSource.h" />
     <ClInclude Include="Engine\Core\FileWatcher\FileWatcher.h" />
     <ClInclude Include="Engine\Core\FileWatcher\FileWatcherImpl.h" />
     <ClInclude Include="Engine\Core\FileWatcher\FileWatcherLinux.h" />
     <ClInclude Include="Engine\Core\FileWatcher\FileWatcherOSX.h" />
     <ClInclude Include="Engine\Core\FileWatcher\FileWatcherWin32.h" />
     <ClInclude Include="Engine\Core\FileWatcher\UpdateListener.h" />
+    <ClInclude Include="Engine\Graphics\AudioHandler.h" />
     <ClInclude Include="Engine\Math\KinematicSteeringOutput.h" />
     <ClInclude Include="Engine\Rendering\2D\imgui\imconfig.h" />
     <ClInclude Include="Engine\Rendering\2D\imgui\imgui.h" />
@@ -272,6 +277,7 @@
     <Import Project="..\packages\AWSSDKCPP-Core.1.6.25\build\native\AWSSDKCPP-Core.targets" Condition="Exists('..\packages\AWSSDKCPP-Core.1.6.25\build\native\AWSSDKCPP-Core.targets')" />
     <Import Project="..\packages\AWSSDKCPP-S3.redist.1.6.20060301.25\build\native\AWSSDKCPP-S3.redist.targets" Condition="Exists('..\packages\AWSSDKCPP-S3.redist.1.6.20060301.25\build\native\AWSSDKCPP-S3.redist.targets')" />
     <Import Project="..\packages\AWSSDKCPP-S3.1.6.20060301.25\build\native\AWSSDKCPP-S3.targets" Condition="Exists('..\packages\AWSSDKCPP-S3.1.6.20060301.25\build\native\AWSSDKCPP-S3.targets')" />
+    <Import Project="..\packages\AWSSDKCPP-S3.symbols.0.12.20060301.12\build\native\AWSSDKCPP-S3.symbols.targets" Condition="Exists('..\packages\AWSSDKCPP-S3.symbols.0.12.20060301.12\build\native\AWSSDKCPP-S3.symbols.targets')" />
   </ImportGroup>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
@@ -281,5 +287,6 @@
     <Error Condition="!Exists('..\packages\AWSSDKCPP-Core.1.6.25\build\native\AWSSDKCPP-Core.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\AWSSDKCPP-Core.1.6.25\build\native\AWSSDKCPP-Core.targets'))" />
     <Error Condition="!Exists('..\packages\AWSSDKCPP-S3.redist.1.6.20060301.25\build\native\AWSSDKCPP-S3.redist.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\AWSSDKCPP-S3.redist.1.6.20060301.25\build\native\AWSSDKCPP-S3.redist.targets'))" />
     <Error Condition="!Exists('..\packages\AWSSDKCPP-S3.1.6.20060301.25\build\native\AWSSDKCPP-S3.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\AWSSDKCPP-S3.1.6.20060301.25\build\native\AWSSDKCPP-S3.targets'))" />
+    <Error Condition="!Exists('..\packages\AWSSDKCPP-S3.symbols.0.12.20060301.12\build\native\AWSSDKCPP-S3.symbols.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\AWSSDKCPP-S3.symbols.0.12.20060301.12\build\native\AWSSDKCPP-S3.symbols.targets'))" />
   </Target>
 </Project>
