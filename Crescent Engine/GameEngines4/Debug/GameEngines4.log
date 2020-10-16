@@ -1,5 +1,4 @@
-﻿  AudioHandler.cpp
-  GameScene.cpp
+﻿  TestAIScene.cpp
 C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.27.29110\include\xstring(2390,23): warning C4244: 'argument': conversion from 'const wchar_t' to 'const _Elem', possible loss of data
           with
           [
@@ -39,5 +38,4 @@ C:\Users\johna\Desktop\CrescentEngineRepository\Crescent Engine\GameEngines4\Eng
               _Iter=std::_String_const_iterator<std::_String_val<std::_Simple_types<wchar_t>>>,
               _Alloc=std::allocator<char>
           ]
-  Generating Code...
   GameEngines4.vcxproj -> C:\Users\johna\Desktop\CrescentEngineRepository\Crescent Engine\Debug\GameEngines4.exe

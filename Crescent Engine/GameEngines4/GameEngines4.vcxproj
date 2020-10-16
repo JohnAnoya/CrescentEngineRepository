@@ -162,6 +162,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Engine\Math\BlendedSteering.cpp" />
+    <ClCompile Include="Engine\Math\CohesionSteering.cpp" />
     <ClCompile Include="GAME\TesterClasses\AudioSource.cpp" />
     <ClCompile Include="Engine\Core\FileWatcher\FileWatcher.cpp" />
     <ClCompile Include="Engine\Core\FileWatcher\FileWatcherLinux.cpp" />
@@ -207,8 +209,13 @@
     <ClCompile Include="GAME\Scenes\TestAIScene.cpp" />
     <ClCompile Include="Engine\Math\Trackball.cpp" />
     <ClCompile Include="Engine\Core\WatchTest\Test.cpp" />
+    <ClCompile Include="Engine\Math\VelocityMatching.cpp" />
+    <ClCompile Include="Engine\Math\SteeringOutput.cpp" />
+    <ClCompile Include="Engine\Math\SeparationSteering.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Engine\Math\BlendedSteering.h" />
+    <ClInclude Include="Engine\Math\CohesionSteering.h" />
     <ClInclude Include="GAME\TesterClasses\AudioSource.h" />
     <ClInclude Include="Engine\Core\FileWatcher\FileWatcher.h" />
     <ClInclude Include="Engine\Core\FileWatcher\FileWatcherImpl.h" />
@@ -263,6 +270,9 @@
     <ClInclude Include="Engine\Events\KeyEventListener.h" />
     <ClInclude Include="Engine\Math\Trackball.h" />
     <ClInclude Include="Engine\Core\WatchTest\Test.h" />
+    <ClInclude Include="Engine\Math\VelocityMatching.h" />
+    <ClInclude Include="Engine\Math\SteeringOutput.h" />
+    <ClInclude Include="Engine\Math\SeparationSteering.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Engine\Shaders\ColourFragmentShader.glsl" />

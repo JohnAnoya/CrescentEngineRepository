@@ -59,19 +59,21 @@ bool TestAIScene::OnCreate()
 	lightSource->SetAmbient(0.1f);
 	lightSource->SetDiffuse(0.5f);
 	lightSource->SetLightColour(glm::vec3(1.0f, 1.0f, 1.0f));
-
 	CoreEngine::GetInstance()->GetCamera()->AddLightSource(lightSource);
 
 	CollisionHandler::GetInstance()->OnCreate(100.0f);
 
-	Model* model1 = new Model("./Resources/Models/Dice.obj", "./Resources/Materials/Dice.mtl", ShaderHandler::GetInstance()->GetShader("basicShader"));
-	SceneGraph::GetInstance()->AddModel(model1);
-	GameObject* dice = new GameObject(model1, glm::vec3(20.0f, -1.0f, 0.0f));
-	dice->SetScale(glm::vec3(0.5f));
-	dice->AddComponent<AIComponent>();
-	//apple->AddComponent<ComponentA>();
-	//apple->RemoveComponent<ComponentA>();
-	SceneGraph::GetInstance()->AddGameObject(dice, "dice");
+	std::vector<Model*> models(10);
+	std::vector<GameObject*> dices(10);
+	for (int i = 0; i < 10; i++) {
+		models[i] = new Model("./Resources/Models/Dice.obj", "./Resources/Materials/Dice.mtl", ShaderHandler::GetInstance()->GetShader("basicShader"));
+		SceneGraph::GetInstance()->AddModel(models[i]);
+		dices[i] = new GameObject(models[i], glm::vec3(i, std::rand() % 10, 0.0f));
+		dices[i]->SetScale(glm::vec3(0.5f));
+		
+		dices[i]->AddComponent<AIComponent>(glm::vec3()); 
+		SceneGraph::GetInstance()->AddGameObject(dices[i]);
+	}
 
 	return true;
 }
