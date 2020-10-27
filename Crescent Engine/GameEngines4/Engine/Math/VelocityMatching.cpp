@@ -3,7 +3,7 @@
 VelocityMatching::VelocityMatching(glm::vec3 targetPosition_) {
 	result = new SteeringOutput(); 
 	targetPosition = targetPosition_;
-	maxAcceleration = 10.0f; 
+	maxAcceleration = 1.0f; 
 	timeToTarget = 5.5f; 
 }
 
@@ -13,13 +13,12 @@ VelocityMatching::~VelocityMatching() {
 }
 
 SteeringOutput* VelocityMatching::getSteering(GameObject* gameObject_) {
-
 	sceneGameObjects = SceneGraph::GetInstance()->GetSceneGameObjects();
 
 	for (it = sceneGameObjects.begin(); it != sceneGameObjects.end(); it++) {
 		if (it->second != gameObject_) {
-			result->SetLinear(it->second->GetPosition() - gameObject_->GetPosition());
-			result->SetLinear(result->GetLinear() / timeToTarget);
+			result->SetLinear(it->second->GetPosition() - gameObject_->GetPosition()); //Get direction vector 
+			result->SetLinear(result->GetLinear() / timeToTarget); //divide direction vector by timeToTarget
 
 			//Clipping max acceleration 
 			if (result->GetLinear().length() > maxAcceleration) {
@@ -29,6 +28,6 @@ SteeringOutput* VelocityMatching::getSteering(GameObject* gameObject_) {
 		}
 	}
 
-	result->SetAngular(0.0f);
+	result->SetAngular(0.0f); //Defaulting angular to 0 because we aren't using it 
 	return result;
 }

@@ -63,6 +63,13 @@ bool TestAIScene::OnCreate()
 
 	CollisionHandler::GetInstance()->OnCreate(100.0f);
 
+	Model* LeaderDiceModel = new Model("./Resources/Models/Dice.obj", "./Resources/Materials/Dice.mtl", ShaderHandler::GetInstance()->GetShader("basicShader"));
+	SceneGraph::GetInstance()->AddModel(LeaderDiceModel); 
+	GameObject* LeaderDiceObject = new GameObject(LeaderDiceModel, glm::vec3(0.0f));
+	LeaderDiceObject->SetScale(glm::vec3(0.5f));
+	LeaderDiceObject->AddComponent<AIComponent>(glm::vec3());
+	SceneGraph::GetInstance()->AddGameObject(LeaderDiceObject, "Leader");
+
 	std::vector<Model*> models(10);
 	std::vector<GameObject*> dices(10);
 	for (int i = 0; i < 10; i++) {

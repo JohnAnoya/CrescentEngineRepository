@@ -18,8 +18,6 @@ bool AudioSource::OnCreate(GameObject* parent_) {
 }
 
 void AudioSource::Update(const float deltaTime_) {
-	AudioHandler::GetInstance()->Update(deltaTime_);
-	
 	if (parent != nullptr) {
 		AudioHandler::GetInstance()->UpdateChannelPositionVelocity(channelID, parent->GetPosition()); 
 	}

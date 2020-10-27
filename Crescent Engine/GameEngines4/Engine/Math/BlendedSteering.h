@@ -6,6 +6,7 @@
 #include "CohesionSteering.h"
 #include "VelocityMatching.h"
 #include "../../Engine/Rendering/3D/GameObject.h"
+#include <algorithm>
 class BlendedSteering
 {
 public: 
@@ -18,7 +19,9 @@ private:
 
 	float maxAcceleration;
 	float maxRotation; 
-	float weight; 
+	float velMatchWeight; 
+	float separationWeight;
+	float cohesionWeight; 
 
 	VelocityMatching* velocityMatch; 
 	SeparationSteering* separation;

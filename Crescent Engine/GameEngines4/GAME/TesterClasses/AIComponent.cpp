@@ -28,7 +28,9 @@ bool AIComponent::OnCreate(GameObject* parent_) {
 
 void AIComponent::Update(float deltaTime_) {
 	if (parent != nullptr) {
-	  
+		if (parent->GetTag() == "Leader") {
+			parent->SetPosition(parent->GetPosition() + 1.0f * deltaTime_);
+		}
 		/* Kinematic Seek Test */
 		//parent->SetPosition(parent->GetPosition() + kinematicSeek->getSteering(parent)->GetVelocity() * deltaTime_); 
 		//parent->SetAngle(kinematicSeek->getSteering(parent)->GetRotation());

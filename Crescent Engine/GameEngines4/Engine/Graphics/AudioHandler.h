@@ -22,15 +22,13 @@ public:
 	void Update(float deltaTime_);
 	void OnDestroy();
 
-	
 private:
 	AudioHandler();
 	~AudioHandler();
 
 	FMOD::System* system;
 
-	FMOD_VECTOR* FMODVector;
-	FMOD_VECTOR* glmToFMOD(glm::vec3 vector_);
+	FMOD_VECTOR glmToFMOD(glm::vec3 vector_);
 
 	void LoadSound(std::string soundName_, bool audioLooped_, bool audio3D_, bool streamType_);
 	int PlaySound(std::string soundName_, glm::vec3 soundPosition_, glm::vec3 soundVelocity_ = glm::vec3(0.0f, 0.0f, 0.0f), float volume_ = 1.0f);

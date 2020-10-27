@@ -5,7 +5,6 @@ std::map<std::string, FMOD::Sound*> AudioHandler::fmodSounds = std::map<std::str
 std::map<int, FMOD::Channel*> AudioHandler::fmodChannels = std::map<int, FMOD::Channel*>();
 
 AudioHandler::AudioHandler() {
-	FMODVector = new FMOD_VECTOR(); 
 	ChannelID = -1;
 	isPlayingResult = false;
 }
@@ -22,10 +21,12 @@ AudioHandler* AudioHandler::GetInstance() {
 	return audioInstance.get();
 }
 
-FMOD_VECTOR* AudioHandler::glmToFMOD(glm::vec3 vector_) {
-	FMODVector->x = vector_.x;
-	FMODVector->y = vector_.y;
-	FMODVector->z = vector_.z;
+FMOD_VECTOR AudioHandler::glmToFMOD(glm::vec3 vector_) {
+	FMOD_VECTOR FMODVector;
+
+	FMODVector.x = vector_.x;
+	FMODVector.y = vector_.y;
+	FMODVector.z = vector_.z;
 
 	return FMODVector;
 }
@@ -36,7 +37,9 @@ bool AudioHandler::InitializeAudio(glm::vec3 position_, glm::vec3 velocity_, glm
 		return false;
 	}
 
-	if (system->getNumDrivers(0) == 0) {
+	int numDrivers = 0;
+	system->getNumDrivers(&numDrivers);
+	if (numDrivers == 0) {
 		Debugger::FatalError("FMOD failed to find a driver!", "AudioHandler.cpp", __LINE__);
 		return false;
 	}
@@ -46,8 +49,7 @@ bool AudioHandler::InitializeAudio(glm::vec3 position_, glm::vec3 velocity_, glm
 		return false;
 	}
 
-
-	if (system->set3DListenerAttributes(0, glmToFMOD(position_), glmToFMOD(velocity_), glmToFMOD(forward_), glmToFMOD(up_)) != FMOD_OK) {
+	if (system->set3DListenerAttributes(0, &glmToFMOD(position_), &glmToFMOD(velocity_), &glmToFMOD(forward_), &glmToFMOD(up_)) != FMOD_OK) {
 		Debugger::FatalError("Failed to set FMOD 3DListenerAttributes!", "AudioHandler.cpp", __LINE__);
 		return false;
 	}
@@ -87,7 +89,7 @@ void AudioHandler::LoadSound(std::string soundName_, bool audioLooped_, bool aud
 
 	//if the Audio file is short (sound effect), turn on the sample flag instead
 	else {
-		mode |= FMOD_CREATESAMPLE;
+		mode |= FMOD_CREATECOMPRESSEDSAMPLE;
 	}
 
 	FMOD::Sound* newSound;
@@ -104,7 +106,7 @@ int AudioHandler::PlaySound(std::string soundName_, glm::vec3 soundPosition_, gl
 	channel = nullptr;
 
 	system->playSound(GetSound(soundName_), nullptr, true, &channel); //Play the sound, but pause it to set some attributes 
-	channel->set3DAttributes(glmToFMOD(soundPosition_), glmToFMOD(soundVelocity_));
+	channel->set3DAttributes(&glmToFMOD(soundPosition_), &glmToFMOD(soundVelocity_));
 	channel->setVolume(volume_);
 	channel->setPaused(false); //Once all the attributes are set, unpause the sound 
 
@@ -126,7 +128,7 @@ FMOD::Sound* AudioHandler::GetSound(std::string soundName_) {
 
 void AudioHandler::UpdateChannelPositionVelocity(int channelID_, glm::vec3 newPosition_, glm::vec3 newVelocity_) {
 	if (fmodChannels.find(channelID_) != fmodChannels.end()) {
-		fmodChannels[channelID_]->set3DAttributes(glmToFMOD(newPosition_), glmToFMOD(newVelocity_));
+		fmodChannels[channelID_]->set3DAttributes(&glmToFMOD(newPosition_), &glmToFMOD(newVelocity_));
 	}
 }
 
@@ -144,9 +146,6 @@ void AudioHandler::Update(float deltaTime_) {
 }
 
 void AudioHandler::OnDestroy() {
-	delete FMODVector;
-	FMODVector = nullptr;
-
 	if (fmodSounds.size() > 0) {
 		for (auto sounds : fmodSounds) {
 			FMOD_Sound_Release(reinterpret_cast<FMOD_SOUND*>(sounds.second));
@@ -165,4 +164,4 @@ void AudioHandler::OnDestroy() {
 
 	system->release();
 	system = nullptr;
-}
+} 

@@ -3,9 +3,8 @@
 SeparationSteering::SeparationSteering(glm::vec3 targetPosition_) {
 	result = new SteeringOutput();
 	targetPosition = targetPosition_;
-	maxAcceleration = 10.0f; 
+	maxAcceleration = 1.0f; 
 	Threshold = 1.0f; 
-	
 }
 
 SeparationSteering::~SeparationSteering() {

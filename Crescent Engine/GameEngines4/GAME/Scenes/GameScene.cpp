@@ -89,9 +89,9 @@ bool GameScene::OnCreate()
 void GameScene::Update(const float deltaTime_)
 {
 	//std::cout << deltaTime_ << std::endl;
+	AudioHandler::GetInstance()->Update(deltaTime_);
 	SceneGraph::GetInstance()->Update(deltaTime_);
 	Frustum::GetInstance()->ExtractFrustumResults(); 
-	
 }
 
 void GameScene::Render()

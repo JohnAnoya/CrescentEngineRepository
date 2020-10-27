@@ -7,7 +7,6 @@
 #include "GameInterface.h"
 #include "Scene.h"
 #include "Debugger.h"
-#include "../Core/FileWatcher/UpdateListener.h"
 #include "../Rendering/3D/GameObject.h"
 #include "../Rendering/SceneGraph.h"
 #include "../Graphics/ShaderHandler.h"
@@ -87,12 +86,6 @@ private:
 	bool propertiesWindowOpen;
 	bool setInitialObjectPos;
 	float Position[3];
-
-	// create the listener (before the file watcher - so it gets destroyed after the file watcher)
-	UpdateListener listener;
-
-	// create the file watcher object
-	FW::FileWatcher fileWatcher;
 };
 #endif
 
