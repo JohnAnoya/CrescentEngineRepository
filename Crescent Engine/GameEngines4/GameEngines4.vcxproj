@@ -22,7 +22,7 @@
     <VCProjectVersion>16.0</VCProjectVersion>
     <ProjectGuid>{28D6E422-ECAD-40AE-B3D9-5B23977E5B0B}</ProjectGuid>
     <RootNamespace>GameEngines4</RootNamespace>
-    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -208,6 +208,9 @@
     <ClCompile Include="Engine\Math\VelocityMatching.cpp" />
     <ClCompile Include="Engine\Math\SteeringOutput.cpp" />
     <ClCompile Include="Engine\Math\SeparationSteering.cpp" />
+    <ClCompile Include="Engine\Rendering\3D\Particle.cpp" />
+    <ClCompile Include="Engine\Rendering\3D\ParticleEmitter.cpp" />
+    <ClCompile Include="Engine\Math\Randomizer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Math\BlendedSteering.h" />
@@ -263,11 +266,16 @@
     <ClInclude Include="Engine\Math\VelocityMatching.h" />
     <ClInclude Include="Engine\Math\SteeringOutput.h" />
     <ClInclude Include="Engine\Math\SeparationSteering.h" />
+    <ClInclude Include="Engine\Rendering\3D\Particle.h" />
+    <ClInclude Include="Engine\Rendering\3D\ParticleEmitter.h" />
+    <ClInclude Include="Engine\Math\Randomizer.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Engine\Shaders\ColourFragmentShader.glsl" />
     <None Include="Engine\Shaders\ColourVertexShader.glsl" />
     <None Include="Engine\Shaders\FragementShader.glsl" />
+    <None Include="Engine\Shaders\ParticleFragShader.glsl" />
+    <None Include="Engine\Shaders\ParticleVertShader.glsl" />
     <None Include="Engine\Shaders\VertexShader.glsl" />
     <None Include="packages.config" />
   </ItemGroup>

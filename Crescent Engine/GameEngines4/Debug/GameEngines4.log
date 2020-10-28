@@ -1,3 +1,21 @@
-﻿  SeparationSteering.cpp
-C:\Users\RuthlessLua\Desktop\CrescentEngineRepository\Crescent Engine\GameEngines4\Engine\Math\SeparationSteering.cpp(26,43): warning C4244: '=': conversion from 'glm::tvec3<float,0>::length_type' to 'float', possible loss of data
-  GameEngines4.vcxproj -> C:\Users\RuthlessLua\Desktop\CrescentEngineRepository\Crescent Engine\Debug\GameEngines4.exe
+﻿  Particle.cpp
+C:\Users\johna\Desktop\CrescentEngineRepository\Crescent Engine\GameEngines4\Engine\Rendering\3D\Particle.cpp(89,75): error C2039: 'lifeTime': is not a member of 'Vertex'
+C:\Users\johna\Desktop\CrescentEngineRepository\Crescent Engine\GameEngines4\Engine\Rendering\3D\Particle.h(11): message : see declaration of 'Vertex'
+C:\Users\johna\Desktop\CrescentEngineRepository\Crescent Engine\GameEngines4\Engine\Rendering\3D\Particle.cpp(89,75): error C2618: illegal member designator in offsetof
+C:\Users\johna\Desktop\CrescentEngineRepository\Crescent Engine\GameEngines4\Engine\Rendering\3D\Particle.cpp(89,75): message : offsetof has a builtin meaning; use /Zc:offsetof- to revert to old, non-conforming definition
+C:\Users\johna\Desktop\CrescentEngineRepository\Crescent Engine\GameEngines4\Engine\Rendering\3D\Particle.cpp(93,75): error C2039: 'particleSize': is not a member of 'Vertex'
+C:\Users\johna\Desktop\CrescentEngineRepository\Crescent Engine\GameEngines4\Engine\Rendering\3D\Particle.h(11): message : see declaration of 'Vertex'
+C:\Users\johna\Desktop\CrescentEngineRepository\Crescent Engine\GameEngines4\Engine\Rendering\3D\Particle.cpp(93,75): error C2618: illegal member designator in offsetof
+C:\Users\johna\Desktop\CrescentEngineRepository\Crescent Engine\GameEngines4\Engine\Rendering\3D\Particle.cpp(93,75): message : offsetof has a builtin meaning; use /Zc:offsetof- to revert to old, non-conforming definition
+C:\Users\johna\Desktop\CrescentEngineRepository\Crescent Engine\GameEngines4\Engine\Rendering\3D\Particle.cpp(101,75): error C2039: 'velocity': is not a member of 'Vertex'
+C:\Users\johna\Desktop\CrescentEngineRepository\Crescent Engine\GameEngines4\Engine\Rendering\3D\Particle.h(11): message : see declaration of 'Vertex'
+C:\Users\johna\Desktop\CrescentEngineRepository\Crescent Engine\GameEngines4\Engine\Rendering\3D\Particle.cpp(101,75): error C2618: illegal member designator in offsetof
+C:\Users\johna\Desktop\CrescentEngineRepository\Crescent Engine\GameEngines4\Engine\Rendering\3D\Particle.cpp(101,75): message : offsetof has a builtin meaning; use /Zc:offsetof- to revert to old, non-conforming definition
+C:\Users\johna\Desktop\CrescentEngineRepository\Crescent Engine\GameEngines4\Engine\Rendering\3D\Particle.cpp(109,75): error C2039: 'colour': is not a member of 'Vertex'
+C:\Users\johna\Desktop\CrescentEngineRepository\Crescent Engine\GameEngines4\Engine\Rendering\3D\Particle.h(11): message : see declaration of 'Vertex'
+C:\Users\johna\Desktop\CrescentEngineRepository\Crescent Engine\GameEngines4\Engine\Rendering\3D\Particle.cpp(109,75): error C2618: illegal member designator in offsetof
+C:\Users\johna\Desktop\CrescentEngineRepository\Crescent Engine\GameEngines4\Engine\Rendering\3D\Particle.cpp(109,75): message : offsetof has a builtin meaning; use /Zc:offsetof- to revert to old, non-conforming definition
+  ParticleEmitter.cpp
+C:\Users\johna\Desktop\CrescentEngineRepository\Crescent Engine\GameEngines4\Engine\Math\Randomizer.h(56,21): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+  GameScene.cpp
+  Generating Code...
