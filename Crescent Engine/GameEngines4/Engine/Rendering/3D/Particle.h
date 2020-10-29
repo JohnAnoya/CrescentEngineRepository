@@ -7,15 +7,16 @@
 #include <glm/gtc/type_ptr.hpp>
 #include "../../Camera/Camera.h"
 
-
-struct Vertex
+struct Vertex3D
 {
 	glm::vec3 position;
 	glm::vec2 texCoords;
-};
+	glm::vec3 colour;
+	
+	float lifeTime;
+	float particleSize;
 
-struct SubParticle {
-	std::vector<Vertex> vertextList;
+	glm::vec3 velocity;
 };
 
 class Particle{
@@ -34,9 +35,10 @@ public:
 	float GetParticleSize(); 
 	glm::vec3 GetPosition(); 
 	glm::vec3 GetVelocity(); 
+
 private: 
 	void GenerateBuffers(); 
-	SubParticle subParticle;
+	std::vector<Vertex3D> vertexList;
 
 	GLuint VAO, VBO;
 	GLuint shaderProgram;
@@ -45,13 +47,7 @@ private:
 	GLuint colourLocation; 
 	GLuint textureLocation; 
 
-	float lifeTime;
-	float particleSize;
-
-	glm::vec3 position;
-	glm::vec3 velocity;
-	glm::vec2 texCoords;
-	glm::vec3 colour;
+	glm::mat4 GetTransform(glm::vec3 position_, float angle_, glm::vec3 rotation_, glm::vec3 scale_) const;
 };
 #endif 
 

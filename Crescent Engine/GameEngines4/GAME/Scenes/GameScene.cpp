@@ -61,6 +61,8 @@ bool GameScene::OnCreate()
 	lightSource->SetDiffuse(0.5f);
 	lightSource->SetLightColour(glm::vec3(1.0f, 1.0f, 1.0f));
 
+	particleEmitter = new ParticleEmitter(1, "diceMap.jpg", "basicShader"); 
+
 	CoreEngine::GetInstance()->GetCamera()->AddLightSource(lightSource);
 
 	CollisionHandler::GetInstance()->OnCreate(100.0f);
@@ -92,9 +94,11 @@ void GameScene::Update(const float deltaTime_)
 	AudioHandler::GetInstance()->Update(deltaTime_);
 	SceneGraph::GetInstance()->Update(deltaTime_);
 	Frustum::GetInstance()->ExtractFrustumResults(); 
+	particleEmitter->Update(deltaTime_); 
 }
 
 void GameScene::Render()
 {
 	SceneGraph::GetInstance()->Render(CoreEngine::GetInstance()->GetCamera());
+	particleEmitter->Render(CoreEngine::GetInstance()->GetCamera());
 }

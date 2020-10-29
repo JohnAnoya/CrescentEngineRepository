@@ -23,6 +23,7 @@ private:
 	GLuint textureID;
 
 	std::vector<Particle*> particles; 
+	std::vector<glm::mat4> particleInstances;
 };
 #endif 
 

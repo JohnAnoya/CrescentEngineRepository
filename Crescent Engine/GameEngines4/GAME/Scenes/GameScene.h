@@ -5,6 +5,7 @@
 #include "../TesterClasses/ComponentB.h"
 #include "../TesterClasses/AIComponent.h"
 #include "../../Engine/Core/CoreEngine.h"
+#include "../../Engine/Rendering/3D/ParticleEmitter.h"
 #include <glm/gtx/string_cast.hpp>
 
 class GameScene : public Scene
@@ -19,6 +20,7 @@ public:
 
 private:
 	LightSource* lightSource; 
+	ParticleEmitter* particleEmitter; 
 };
 #endif
 
