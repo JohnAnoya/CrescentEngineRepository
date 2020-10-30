@@ -4,8 +4,8 @@
 #include <string>
 #include "../../Graphics/TextureHandler.h"
 #include "../../Graphics/ShaderHandler.h"
-#include "Particle.h"
 #include "../../Math/Randomizer.h"
+#include "Particle.h"
 
 class ParticleEmitter{
 public: 
@@ -23,7 +23,6 @@ private:
 	GLuint textureID;
 
 	std::vector<Particle*> particles; 
-	std::vector<glm::mat4> particleInstances;
 };
 #endif 
 

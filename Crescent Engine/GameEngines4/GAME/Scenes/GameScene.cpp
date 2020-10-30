@@ -61,10 +61,7 @@ bool GameScene::OnCreate()
 	lightSource->SetDiffuse(0.5f);
 	lightSource->SetLightColour(glm::vec3(1.0f, 1.0f, 1.0f));
 
-	particleEmitter = new ParticleEmitter(1, "diceMap.jpg", "basicShader"); 
-
 	CoreEngine::GetInstance()->GetCamera()->AddLightSource(lightSource);
-
 	CollisionHandler::GetInstance()->OnCreate(100.0f);
 
 	Model* model1 = new Model("./Resources/Models/Apple.obj", "./Resources/Materials/Apple.mtl", ShaderHandler::GetInstance()->GetShader("basicShader"));
@@ -85,6 +82,8 @@ bool GameScene::OnCreate()
 	dice->SetScale(glm::vec3(0.25f));
 	SceneGraph::GetInstance()->AddGameObject(dice, "dice");
 
+	particleEmitter = new ParticleEmitter(15, "diceMap.jpg", "particleShader");
+
 	return true;
 }
 
@@ -93,8 +92,8 @@ void GameScene::Update(const float deltaTime_)
 	//std::cout << deltaTime_ << std::endl;
 	AudioHandler::GetInstance()->Update(deltaTime_);
 	SceneGraph::GetInstance()->Update(deltaTime_);
-	Frustum::GetInstance()->ExtractFrustumResults(); 
-	particleEmitter->Update(deltaTime_); 
+	Frustum::GetInstance()->ExtractFrustumResults();
+	particleEmitter->Update(deltaTime_);
 }
 
 void GameScene::Render()
