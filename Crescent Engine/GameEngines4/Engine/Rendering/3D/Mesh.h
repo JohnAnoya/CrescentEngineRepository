@@ -25,21 +25,9 @@ struct SubMesh {
 class Mesh
 {
 public:
-	Mesh(SubMesh subMesh_, GLuint shaderProgram_);
-	~Mesh();
-	void Render(Camera* camera_, std::vector<glm::mat4> instances_);
-	
-private:
-	void GenerateBuffers();
-	SubMesh subMesh;
-	
-	GLuint VAO, VBO;	
-	GLuint shaderProgram;
-	GLuint modelLocation, viewLocation, projectionLocation;
-	GLuint diffuseMapLocation, shininessLocation, transparencyLocation, ambientLocation, diffuseLocation, specularLocation; 
-
-	GLuint viewPositionLocation, lightPositionLocation, lightAmbientLocation, lightDiffuseLocation, lightColourLocation; 
-
+	Mesh(){}
+	virtual ~Mesh(){}
+	virtual void Render(Camera* camera_, std::vector<glm::mat4> instances_) = 0;
 };
 #endif
 

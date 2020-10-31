@@ -1,10 +1,9 @@
 #ifndef MODEL_H
 #define MODEL_H
 
-#include "Mesh.h"
-#include <glm/gtc/matrix_transform.hpp>
-#include <string>
+#include "OpenGLMesh.h"
 #include "LoadOBJModel.h"
+#include "../../Core/CoreEngine.h"
 
 class Model
 {
@@ -30,6 +29,8 @@ private:
 
 	glm::mat4 GetTransform(glm::vec3 position_, float angle_, glm::vec3 rotation_, glm::vec3 scale_) const;
 	void LoadModel();
+
+	RendererType rendererType; 
 };
 #endif
 

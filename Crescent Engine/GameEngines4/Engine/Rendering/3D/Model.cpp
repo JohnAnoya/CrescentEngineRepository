@@ -2,6 +2,8 @@
 
 Model::Model(const std::string& objFilePath_, const std::string& mtlFilePath_, GLuint shaderProgram_) : subMeshes(std::vector<Mesh*>()), modelInstances(std::vector<glm::mat4>())
 {
+	rendererType = CoreEngine::GetInstance()->GetRendererType(); 
+
 	subMeshes.reserve(10);
 	shaderProgram = shaderProgram_;
 	modelInstances.reserve(5);
@@ -77,7 +79,9 @@ void Model::UpdateInstance(int index_, glm::vec3 position_, float angle_, glm::v
 
 void Model::LoadModel() {
 	for (int i = 0; i < obj->GetSubMeshes().size(); i++) {
-		subMeshes.push_back(new Mesh(obj->GetSubMeshes()[i], shaderProgram));
+		if (rendererType == RendererType::OPENGL) {
+			subMeshes.push_back(new OpenGLMesh(obj->GetSubMeshes()[i], shaderProgram));
+		}
 	}
 	box = obj->GetBoundingBox();
 

@@ -3,7 +3,7 @@
 
 int main(int argc, char* argv[])
 {
-	CoreEngine::GetInstance()->SetGameInterface(new Game1);
+	CoreEngine::GetInstance()->SetGameInterface(new Game1, RendererType::OPENGL);
 
 	if (!CoreEngine::GetInstance()->OnCreate("Engine Window", 1600, 900)) 
 	{

@@ -1,8 +1,6 @@
-#include "Mesh.h"
+#include "OpenGLMesh.h"
 
-
-Mesh::Mesh(SubMesh subMesh_, GLuint shaderProgram_)
-{
+OpenGLMesh::OpenGLMesh(SubMesh subMesh_, GLuint shaderProgram_) : Mesh() {
 	VAO = 0;
 	VBO = 0;
 
@@ -10,11 +8,11 @@ Mesh::Mesh(SubMesh subMesh_, GLuint shaderProgram_)
 	viewLocation = 0;
 	projectionLocation = 0;
 
-	diffuseMapLocation = 0; 
-	shininessLocation = 0; 
-	transparencyLocation = 0; 
+	diffuseMapLocation = 0;
+	shininessLocation = 0;
+	transparencyLocation = 0;
 	ambientLocation = 0;
-	diffuseLocation = 0; 
+	diffuseLocation = 0;
 	specularLocation = 0;
 
 	shaderProgram = shaderProgram_;
@@ -23,13 +21,12 @@ Mesh::Mesh(SubMesh subMesh_, GLuint shaderProgram_)
 	GenerateBuffers();
 }
 
-Mesh::~Mesh()
-{
+OpenGLMesh::~OpenGLMesh() {
 	glDeleteVertexArrays(1, &VAO);
 	glDeleteBuffers(1, &VBO);
 
 	if (subMesh.vertextList.size() > 0) {
-		subMesh.vertextList.clear(); 
+		subMesh.vertextList.clear();
 	}
 
 	if (subMesh.meshIndices.size() > 0) {
@@ -37,8 +34,7 @@ Mesh::~Mesh()
 	}
 }
 
-void Mesh::Render(Camera* camera_, std::vector<glm::mat4> instances_)
-{	
+void OpenGLMesh::Render(Camera* camera_, std::vector<glm::mat4> instances_) {
 	glUniform1i(diffuseMapLocation, 0);
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, subMesh.material.diffuseMap);
@@ -63,14 +59,13 @@ void Mesh::Render(Camera* camera_, std::vector<glm::mat4> instances_)
 	for (int i = 0; i < instances_.size(); i++) {
 		glUniformMatrix4fv(modelLocation, 1, GL_FALSE, glm::value_ptr(instances_[i]));
 		glDrawArrays(GL_TRIANGLES, 0, subMesh.vertextList.size());
-	} 
+	}
 
 	glBindVertexArray(0);
 	glBindTexture(GL_TEXTURE_2D, 0);
 }
 
-void Mesh::GenerateBuffers()
-{
+void OpenGLMesh::GenerateBuffers() {
 	glGenVertexArrays(1, &VAO);
 	glGenBuffers(1, &VBO);
 	glBindVertexArray(VAO);
@@ -92,7 +87,6 @@ void Mesh::GenerateBuffers()
 	//Colour
 	glEnableVertexAttribArray(3);
 	glVertexAttribPointer(3, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)offsetof(Vertex, colour));
-
 
 	glBindVertexArray(0);
 	glBindBuffer(GL_ARRAY_BUFFER, 0);

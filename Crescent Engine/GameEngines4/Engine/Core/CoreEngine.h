@@ -16,6 +16,7 @@
 #include "../Events/EventListener.h"
 #include "../Rendering/2D/imgui/imgui.h"
 #include "../Rendering/2D/imgui/imgui_impl_sdl_gl3.h"
+#include "Renderers/OpenGLRenderer.h"
 
 using namespace std::string_literals;
 
@@ -36,15 +37,19 @@ public:
 
 	static CoreEngine* GetInstance();
 
-	void SetGameInterface(GameInterface* gameInterface_);
+	void SetGameInterface(GameInterface* gameInterface_, RendererType rendererType_ = RendererType::OPENGL);
 
 	int GetCurrentScene();
 	void SetCurrentScene(int sceneNum_);
 
 	glm::vec2 GetWindowSize() const;
-
+	SDL_Window* GetWindow() const; 
+	
 	Camera* GetCamera() const;
 	void SetCamera(Camera* camera_);
+
+	RendererType GetRendererType();
+	Renderer* GetRenderer(); 
 
 	void Exit();
 
@@ -81,6 +86,9 @@ private:
 	int currentSceneNum;
 
 	Camera* camera;
+
+	RendererType rendererType; 
+	Renderer* renderer; 
 
 	std::string selectedObject;
 	bool propertiesWindowOpen;

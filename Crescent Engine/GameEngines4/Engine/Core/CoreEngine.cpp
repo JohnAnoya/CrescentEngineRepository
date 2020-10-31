@@ -25,8 +25,17 @@ bool CoreEngine::OnCreate(std::string name_, int width_, int height_)
 	Debugger::DebugInit();
 	Debugger::SetSeverity(MessageType::TYPE_INFO);
 
+	switch (rendererType) {
+		case RendererType::VULKAN: 
+			//Create a new Vulkan object
+				break;
+		default: 
+			renderer = new OpenGLRenderer(); //As default, create a new OpenGL renderer object 
+				break; 
+	}
+
 	window = new Window();
-	if (!window->OnCreate(name_, width_, height_))
+	if (!window->OnCreate(name_, width_, height_, renderer))
 	{
 		Debugger::FatalError("Window failed to initialize ", "CoreEngine.cpp ", __LINE__);
 		isRunning = false;
@@ -35,14 +44,6 @@ bool CoreEngine::OnCreate(std::string name_, int width_, int height_)
 	SDL_WarpMouseInWindow(window->GetWindow(), window->GetWidth()/2, window->GetHeight()/2);
 	MouseEventListener::RegisterEngineObject(this);
 	KeyEventListener::RegisterEngineObject(this);
-
-	ShaderHandler::GetInstance()->CreateProgram("colourShader",
-		"Engine/Shaders/ColourVertexShader.glsl",
-		"Engine/Shaders/ColourFragmentShader.glsl");
-
-	ShaderHandler::GetInstance()->CreateProgram("basicShader", 
-		"Engine/Shaders/VertexShader.glsl",
-		"Engine/Shaders/FragementShader.glsl");
 
 	if (gameInterface) 
 	{
@@ -111,9 +112,10 @@ CoreEngine* CoreEngine::GetInstance()
 	return engineInstance.get();
 }
 
-void CoreEngine::SetGameInterface(GameInterface* gameInterface_)
+void CoreEngine::SetGameInterface(GameInterface* gameInterface_, RendererType rendererType_)
 {
 	gameInterface = gameInterface_;
+	rendererType = rendererType_;
 }
 
 int CoreEngine::GetCurrentScene()
@@ -131,6 +133,10 @@ glm::vec2 CoreEngine::GetWindowSize() const
 	return glm::vec2(window->GetWidth(), window->GetHeight());
 }
 
+SDL_Window* CoreEngine::GetWindow() const {
+	return window->GetWindow();
+}
+
 Camera* CoreEngine::GetCamera() const
 {
 	return camera;
@@ -139,6 +145,14 @@ Camera* CoreEngine::GetCamera() const
 void CoreEngine::SetCamera(Camera* camera_)
 {
 	camera = camera_;
+}
+
+RendererType CoreEngine::GetRendererType() {
+	return rendererType;
+}
+
+Renderer* CoreEngine::GetRenderer() {
+	return renderer;
 }
 
 void CoreEngine::NotifyOfMousePressed(glm::vec2 mouse_, int buttonType_) {
@@ -206,18 +220,12 @@ void CoreEngine::Update(const float deltaTime_)
 	if (gameInterface)
 	{
 		gameInterface->Update(deltaTime_);
-	}
-
-	
+	}	
 }
 
 void CoreEngine::Render()
 {
-
-	glClearColor(0.5f, 0.5f, 0.5f, 0.0f);
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-	//Rend Game
+	//Render Game
 	if (gameInterface)
 	{
 		gameInterface->Render();
@@ -261,8 +269,6 @@ void CoreEngine::Render()
 
 	ImGui::Render();
 	ImGui_ImplSdlGL3_RenderDrawData(ImGui::GetDrawData());
-
-	SDL_GL_SwapWindow(window->GetWindow());
 }
 
 void CoreEngine::ImGuiDestroy() {

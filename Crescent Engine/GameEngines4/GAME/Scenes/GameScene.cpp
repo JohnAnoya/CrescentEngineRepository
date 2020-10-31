@@ -82,7 +82,7 @@ bool GameScene::OnCreate()
 	dice->SetScale(glm::vec3(0.25f));
 	SceneGraph::GetInstance()->AddGameObject(dice, "dice");
 
-	particleEmitter = new ParticleEmitter(15, "diceMap.jpg", "particleShader");
+	//particleEmitter = new ParticleEmitter(15, "diceMap.jpg", "particleShader");
 
 	return true;
 }
@@ -93,11 +93,11 @@ void GameScene::Update(const float deltaTime_)
 	AudioHandler::GetInstance()->Update(deltaTime_);
 	SceneGraph::GetInstance()->Update(deltaTime_);
 	Frustum::GetInstance()->ExtractFrustumResults();
-	particleEmitter->Update(deltaTime_);
+	//particleEmitter->Update(deltaTime_);
 }
 
 void GameScene::Render()
 {
 	SceneGraph::GetInstance()->Render(CoreEngine::GetInstance()->GetCamera());
-	particleEmitter->Render(CoreEngine::GetInstance()->GetCamera());
+	//particleEmitter->Render(CoreEngine::GetInstance()->GetCamera());
 }

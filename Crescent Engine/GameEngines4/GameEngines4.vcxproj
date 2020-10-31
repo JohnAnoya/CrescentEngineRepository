@@ -193,7 +193,6 @@
     <ClCompile Include="Engine\Core\Window.cpp" />
     <ClCompile Include="Engine\Core\Timer.cpp" />
     <ClCompile Include="GAME\Scenes\StartScene.cpp" />
-    <ClCompile Include="Engine\Rendering\3D\Mesh.cpp" />
     <ClCompile Include="Engine\Rendering\3D\Model.cpp" />
     <ClCompile Include="Engine\Graphics\ShaderHandler.cpp" />
     <ClCompile Include="Engine\Graphics\TextureHandler.cpp" />
@@ -211,6 +210,8 @@
     <ClCompile Include="Engine\Rendering\3D\Particle.cpp" />
     <ClCompile Include="Engine\Rendering\3D\ParticleEmitter.cpp" />
     <ClCompile Include="Engine\Math\Randomizer.cpp" />
+    <ClCompile Include="Engine\Core\Renderers\OpenGLRenderer.cpp" />
+    <ClCompile Include="Engine\Rendering\3D\OpenGLMesh.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Math\BlendedSteering.h" />
@@ -269,6 +270,9 @@
     <ClInclude Include="Engine\Rendering\3D\Particle.h" />
     <ClInclude Include="Engine\Rendering\3D\ParticleEmitter.h" />
     <ClInclude Include="Engine\Math\Randomizer.h" />
+    <ClInclude Include="Engine\Core\Renderers\Renderer.h" />
+    <ClInclude Include="Engine\Core\Renderers\OpenGLRenderer.h" />
+    <ClInclude Include="Engine\Rendering\3D\OpenGLMesh.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Engine\Shaders\ColourFragmentShader.glsl" />
