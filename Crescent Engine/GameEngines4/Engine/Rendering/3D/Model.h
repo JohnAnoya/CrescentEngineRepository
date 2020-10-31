@@ -3,6 +3,8 @@
 
 #include "OpenGLMesh.h"
 #include "LoadOBJModel.h"
+#include <glm/gtc/matrix_transform.hpp>
+#include <string>
 #include "../../Core/CoreEngine.h"
 
 class Model
