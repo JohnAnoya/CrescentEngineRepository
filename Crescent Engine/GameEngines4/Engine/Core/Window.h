@@ -8,6 +8,7 @@
 #include <iostream>
 #include "../Core/Debugger.h"
 #include "Renderers/Renderer.h"
+
 class Window
 {
 public:
@@ -26,7 +27,6 @@ private:
 	int height;
 	
 	SDL_Window* window;
-	 
 };
 
 #endif 

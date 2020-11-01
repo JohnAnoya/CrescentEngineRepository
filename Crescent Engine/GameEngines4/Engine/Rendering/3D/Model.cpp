@@ -1,4 +1,5 @@
 #include "Model.h"
+#include "../../Core/CoreEngine.h"
 
 Model::Model(const std::string& objFilePath_, const std::string& mtlFilePath_, GLuint shaderProgram_) : subMeshes(std::vector<Mesh*>()), modelInstances(std::vector<glm::mat4>())
 {

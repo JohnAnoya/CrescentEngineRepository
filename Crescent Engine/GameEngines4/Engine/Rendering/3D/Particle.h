@@ -11,8 +11,8 @@ class ParticleEmitter;
 
 struct Vertex3D
 {
-	glm::vec3 position[4] = {glm::vec3(-0.5f, 0.5f, 0.0f), glm::vec3(0.5f, 0.5f, 0.0f), glm::vec3(-0.5f, -0.5f, 0.0f), glm::vec3(0.5f, -0.5f, 0.0f)};
-	glm::vec2 texCoords[4] = {glm::vec2(0.0f, 0.0f), glm::vec2(1.0f, 0.0f), glm::vec2(0.0f, 1.0f), glm::vec2(1.0f, 0.0f)};
+	glm::vec3 position; 
+	glm::vec2 texCoords; 
 };
 
 class Particle{

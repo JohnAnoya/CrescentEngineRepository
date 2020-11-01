@@ -19,7 +19,7 @@ SDL_Window* OpenGLRenderer::CreateWindow(std::string name_, int width_, int heig
 	GLenum error = glewInit();
 	if (error != GLEW_OK)
 	{
-		//Debugger::FatalError("Failied to initialize glew ", "OpenGLRenderer.cpp ", __LINE__);
+		Debugger::FatalError("Failied to initialize glew ", "OpenGLRenderer.cpp ", __LINE__);
 		return nullptr;
 	}
 

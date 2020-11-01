@@ -10,10 +10,6 @@ uniform mat4 proj;
 uniform mat4 view; 
 
 void main(){
-	vec4 temp = view * model * vec4(position, 1.0f);
-	float dist = length(temp.xyz);
-	float attenuation = inversesqrt(0.1f * dist);
-
-	gl_Position = proj * model * vec4(position, 1.0f);
+	gl_Position = proj * view * model * vec4(position, 1.0f);
 	TexCoords = texCoords;
 }

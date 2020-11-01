@@ -5,7 +5,7 @@
 #include "LoadOBJModel.h"
 #include <glm/gtc/matrix_transform.hpp>
 #include <string>
-#include "../../Core/CoreEngine.h"
+#include "../../Core/Renderers/Renderer.h"
 
 class Model
 {

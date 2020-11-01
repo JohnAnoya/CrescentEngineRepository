@@ -22,6 +22,23 @@ Particle::Particle(GLuint shaderProgram_, GLuint textureID_) {
 	particleColour = glm::vec3(0.0f); 
 	rotation = glm::vec3(0.0f);
 
+	Vertex3D temp; 
+	temp.position = glm::vec3(-0.5f, 0.5f, 0.0f);
+	temp.texCoords = glm::vec2(0.0f, 0.0f);
+	vertexList.push_back(temp);
+
+	temp.position = glm::vec3(0.5f, 0.5f, 0.0f);
+	temp.texCoords = glm::vec2(1.0f, 0.0f);
+	vertexList.push_back(temp);
+
+	temp.position = glm::vec3(-0.5f, -0.5f, 0.0f);
+	temp.texCoords = glm::vec2(0.0f, 1.0f);
+	vertexList.push_back(temp);
+
+	temp.position = glm::vec3(0.5f, -0.5f, 0.0f);
+	temp.texCoords = glm::vec2(1.0f, 0.0f);
+	vertexList.push_back(temp);
+
 	GenerateBuffers();
 }
 
@@ -81,6 +98,10 @@ void Particle::Render(Camera* camera_) {
 
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, textureID);
+
+	/*glm::vec4 temp = camera_->GetView() * model * glm::vec4(position, 1.0f);
+	float dist = temp.length();
+	float attenuation = 1.0f / sqrt(0.1f * dist);*/
 
 	glUniformMatrix4fv(viewLocation, 1, GL_FALSE, glm::value_ptr(camera_->GetView()));
 	glUniformMatrix4fv(projectionLocation, 1, GL_FALSE, glm::value_ptr(camera_->GetPerspective()));

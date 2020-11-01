@@ -22,6 +22,10 @@ bool Game1::OnCreate()
 		ShaderHandler::GetInstance()->CreateProgram("basicShader",
 			"Engine/Shaders/VertexShader.glsl",
 			"Engine/Shaders/FragementShader.glsl");
+
+		ShaderHandler::GetInstance()->CreateProgram("particleShader", 
+			"Engine/Shaders/ParticleVertShader.glsl", 
+			"Engine/Shaders/ParticleFragShader.glsl");
 	}
 	
 	if (CoreEngine::GetInstance()->GetCurrentScene() == 0) 

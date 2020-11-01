@@ -4,7 +4,6 @@ ParticleEmitter::ParticleEmitter(int amountParticles_, std::string textureName_,
 	particles.reserve(amountParticles_);
 	amountParticles = amountParticles_; 
 
-	ShaderHandler::GetInstance()->CreateProgram(shaderProgram_, "./Engine/Shaders/ParticleVertShader.glsl", "./Engine/Shaders/ParticleFragShader.glsl");
 	TextureHandler::GetInstance()->CreateTexture(textureName_, "./Resources/Textures/" + textureName_); 
 	textureID = TextureHandler::GetInstance()->GetTexture(textureName_);
 	shaderID = ShaderHandler::GetInstance()->GetShader(shaderProgram_);
@@ -46,6 +45,7 @@ void ParticleEmitter::CreateParticles() {
 		newParticle->SetParticleSize(Randomize(0.5f, 1.0f));
 		newParticle->SetPosition(glm::vec3(0.0f)); 
 		newParticle->SetVelocity(glm::vec3(Randomize(0.0f, 1.5f), Randomize(0.0f, 2.0f), Randomize(0.0f, 1.0f)));
+		particles.push_back(newParticle);
 	}
 }
 

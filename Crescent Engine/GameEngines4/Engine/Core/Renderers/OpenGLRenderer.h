@@ -3,6 +3,7 @@
 
 #include "../Debugger.h"
 #include "Renderer.h"
+
 class OpenGLRenderer : public Renderer{
 public: 
 	OpenGLRenderer();
