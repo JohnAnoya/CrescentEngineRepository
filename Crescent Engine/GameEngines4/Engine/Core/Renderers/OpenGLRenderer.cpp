@@ -16,6 +16,9 @@ SDL_Window* OpenGLRenderer::CreateWindow(std::string name_, int width_, int heig
 		return nullptr; 
 	}
 
+	context = SDL_GL_CreateContext(window);
+	SetPostAttributes();
+
 	GLenum error = glewInit();
 	if (error != GLEW_OK)
 	{
@@ -23,10 +26,7 @@ SDL_Window* OpenGLRenderer::CreateWindow(std::string name_, int width_, int heig
 		return nullptr;
 	}
 
-	context = SDL_GL_CreateContext(window);
-	SetPostAttributes();
-
-	//glEnable(GL_DEPTH_TEST);
+	glEnable(GL_DEPTH_TEST);
 	glViewport(0, 0, width_, height_);
 
 	return window; 
