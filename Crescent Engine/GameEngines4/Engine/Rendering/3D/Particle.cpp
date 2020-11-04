@@ -19,8 +19,8 @@ Particle::Particle(GLuint shaderProgram_, GLuint textureID_) {
 
 	velocity = glm::vec3(0.0f); 
 	position = glm::vec3(0.0f);
-	particleColour = glm::vec3(0.0f); 
-	rotation = glm::vec3(0.0f);
+	particleColour = glm::vec4(0.0f); 
+	rotation = glm::vec3(0.0f, 1.0f, 0.0f);
 
 	Vertex3D temp; 
 	temp.position = glm::vec3(-0.5f, 0.5f, 0.0f);
@@ -36,7 +36,7 @@ Particle::Particle(GLuint shaderProgram_, GLuint textureID_) {
 	vertexList.push_back(temp);
 
 	temp.position = glm::vec3(0.5f, -0.5f, 0.0f);
-	temp.texCoords = glm::vec2(1.0f, 0.0f);
+	temp.texCoords = glm::vec2(1.0f, 1.0f);
 	vertexList.push_back(temp);
 
 	GenerateBuffers();
@@ -67,6 +67,10 @@ void Particle::SetVelocity(glm::vec3 velocity_){
 	velocity = velocity_;
 }
 
+void Particle::SetParticleColour(glm::vec4 colour_) {
+	particleColour = colour_; 
+}
+
 float Particle::GetLifeTime(){
 	return lifeTime;
 }
@@ -81,6 +85,10 @@ glm::vec3 Particle::GetPosition(){
 
 glm::vec3 Particle::GetVelocity(){
 	return velocity;
+}
+
+glm::vec4 Particle::GetParticleColour() {
+	return particleColour;
 }
 
 glm::mat4 Particle::GetTransform(glm::vec3 position_, float angle_, glm::vec3 rotation_, glm::vec3 scale_) const {
@@ -99,16 +107,16 @@ void Particle::Render(Camera* camera_) {
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, textureID);
 
-	/*glm::vec4 temp = camera_->GetView() * model * glm::vec4(position, 1.0f);
-	float dist = temp.length();
-	float attenuation = 1.0f / sqrt(0.1f * dist);*/
+	glm::vec4 temp = camera_->GetView() * GetTransform(position, angle, rotation, glm::vec3(particleSize)) * glm::vec4(position, 1.0f);
+	float dist = temp.xyz().length();
+	float attenuation = 1.0f / sqrt(0.1f * dist);
 
 	glUniformMatrix4fv(viewLocation, 1, GL_FALSE, glm::value_ptr(camera_->GetView()));
 	glUniformMatrix4fv(projectionLocation, 1, GL_FALSE, glm::value_ptr(camera_->GetPerspective()));
-	glUniformMatrix4fv(modelLocation, 1, GL_FALSE, glm::value_ptr(GetTransform(position, angle, rotation, glm::vec3(particleSize))));
+	glUniformMatrix4fv(modelLocation, 1, GL_FALSE, glm::value_ptr(GetTransform(position, angle, rotation, glm::vec3(particleSize * attenuation))));
 
-	glUniform3f(colourLocation, particleColour.x, particleColour.y, particleColour.z);
-	glUniform1ui(textureLocation, textureID); 
+	glUniform4f(colourLocation, particleColour.x, particleColour.y, particleColour.z, particleColour.w);
+	glUniform1ui(textureLocation, 0); 
 
 	glBindVertexArray(VAO);
 	glDrawArrays(GL_TRIANGLE_STRIP, 0, vertexList.size());
@@ -136,7 +144,10 @@ void Particle::GenerateBuffers() {
 	glBindVertexArray(0);
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 
-	modelLocation = glGetUniformLocation(shaderProgram, "model");
 	viewLocation = glGetUniformLocation(shaderProgram, "view");
 	projectionLocation = glGetUniformLocation(shaderProgram, "projection");
+	modelLocation = glGetUniformLocation(shaderProgram, "model");
+
+	colourLocation = glGetUniformLocation(shaderProgram, "particleColour");
+	textureLocation = glGetUniformLocation(shaderProgram, "textureID");
 }

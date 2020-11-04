@@ -1,5 +1,6 @@
 #ifndef PARTICLE_H 
 #define PARTICLE_H 
+#define GLM_SWIZZLE 
 
 #include <glew.h>
 #include <vector>
@@ -26,11 +27,13 @@ public:
 	void SetParticleSize(float particleSize_); 
 	void SetPosition(glm::vec3 position_); 
 	void SetVelocity(glm::vec3 velocity_); 
+	void SetParticleColour(glm::vec4 colour_);
 
 	float GetLifeTime(); 
 	float GetParticleSize(); 
 	glm::vec3 GetPosition(); 
-	glm::vec3 GetVelocity(); 
+	glm::vec3 GetVelocity();
+	glm::vec4 GetParticleColour(); 
 
 private: 
 	void GenerateBuffers(); 
@@ -49,7 +52,7 @@ private:
 
 	glm::vec3 velocity;
 	glm::vec3 position;
-	glm::vec3 particleColour;
+	glm::vec4 particleColour;
 	glm::vec3 rotation; 
 
 	glm::mat4 GetTransform(glm::vec3 position_, float angle_, glm::vec3 rotation_, glm::vec3 scale_) const;

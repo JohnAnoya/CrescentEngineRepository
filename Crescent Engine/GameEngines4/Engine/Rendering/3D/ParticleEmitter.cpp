@@ -23,8 +23,8 @@ ParticleEmitter::~ParticleEmitter() {
 }
 
 float ParticleEmitter::Randomize(float min_, float max_) {
-	MATH::Randomizer randomizer; 
-
+	MATH::Randomizer randomizer;
+	
 	return randomizer.rand(min_, max_); 
 }
 
@@ -41,10 +41,11 @@ void ParticleEmitter::CreateParticles() {
 
 	for (int i = 0; i < amountParticles; i++) {
 		Particle* newParticle = new Particle(shaderID, textureID);
-		newParticle->SetLifeTime(Randomize(1.0f, 1.5f));
-		newParticle->SetParticleSize(Randomize(0.5f, 1.0f));
+		newParticle->SetLifeTime(static_cast<float>(std::rand() % 2));
+		newParticle->SetParticleSize(0.05f);
 		newParticle->SetPosition(glm::vec3(0.0f)); 
-		newParticle->SetVelocity(glm::vec3(Randomize(0.0f, 1.5f), Randomize(0.0f, 2.0f), Randomize(0.0f, 1.0f)));
+		newParticle->SetVelocity(glm::vec3(static_cast<float>(std::rand() % 5), static_cast<float>(std::rand() % 5), static_cast<float>(std::rand() % 5)));
+		newParticle->SetParticleColour(glm::vec4(1.0f, 1.0f, 1.0f, 1.0f));
 		particles.push_back(newParticle);
 	}
 }
@@ -56,12 +57,12 @@ void ParticleEmitter::Update(float deltaTime_) {
 			particle->SetLifeTime(particle->GetLifeTime() - deltaTime_);
 			if (particle->GetLifeTime() <= 0.0f) {
 				particle->SetPosition(glm::vec3(0.0f)); //Reset position and randomize other attributes
-				particle->SetVelocity(glm::vec3(Randomize(0.0f, 1.5f), Randomize(0.0f, 2.0f), Randomize(0.0f, 1.0f)));
-				particle->SetParticleSize(Randomize(0.5f, 1.0f));
-				particle->SetLifeTime(Randomize(1.0f, 1.5f));
+				particle->SetVelocity(glm::vec3(static_cast<float>(std::rand() % 5), static_cast<float>(std::rand() % 5), static_cast<float>(std::rand() % 5)));
+				particle->SetParticleSize(0.05f);
+				particle->SetLifeTime(static_cast<float>(std::rand() % 2));
 			}
 
-			particle->SetPosition(particle->GetVelocity() * deltaTime_);
+			particle->SetPosition(particle->GetPosition() + (particle->GetVelocity() * deltaTime_));
 		}
 	}
 }

@@ -82,7 +82,7 @@ bool GameScene::OnCreate()
 	dice->SetScale(glm::vec3(0.25f));
 	SceneGraph::GetInstance()->AddGameObject(dice, "dice");
 
-	particleEmitter = new ParticleEmitter(15, "diceMap.jpg", "particleShader");
+	particleEmitter = new ParticleEmitter(15, "defaultParticle.png", "particleShader");
 
 	return true;
 }
