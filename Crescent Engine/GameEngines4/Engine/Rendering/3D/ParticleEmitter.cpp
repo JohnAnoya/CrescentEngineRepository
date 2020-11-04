@@ -1,6 +1,9 @@
 #include "ParticleEmitter.h"
+#include "../../Core/CoreEngine.h"
 
 ParticleEmitter::ParticleEmitter(int amountParticles_, std::string textureName_, std::string shaderProgram_) {
+	rendererType = CoreEngine::GetInstance()->GetRendererType();
+	
 	particles.reserve(amountParticles_);
 	amountParticles = amountParticles_; 
 
@@ -23,7 +26,8 @@ ParticleEmitter::~ParticleEmitter() {
 }
 
 float ParticleEmitter::Randomize(float min_, float max_) {
-	MATH::Randomizer randomizer;
+	Randomizer randomizer;
+	
 	
 	return randomizer.rand(min_, max_); 
 }
@@ -40,13 +44,17 @@ void ParticleEmitter::CreateParticles() {
 	}
 
 	for (int i = 0; i < amountParticles; i++) {
-		Particle* newParticle = new Particle(shaderID, textureID);
-		newParticle->SetLifeTime(static_cast<float>(std::rand() % 2));
-		newParticle->SetParticleSize(0.05f);
-		newParticle->SetPosition(glm::vec3(0.0f)); 
-		newParticle->SetVelocity(glm::vec3(static_cast<float>(std::rand() % 5), static_cast<float>(std::rand() % 5), static_cast<float>(std::rand() % 5)));
-		newParticle->SetParticleColour(glm::vec4(1.0f, 1.0f, 1.0f, 1.0f));
-		particles.push_back(newParticle);
+		if (rendererType == RendererType::OPENGL) {
+			OpenGLParticle* newParticle = new OpenGLParticle(shaderID, textureID);
+			newParticle->lifeTime = (static_cast<float>(std::rand() % 2));
+			newParticle->particleSize = 0.05f;
+			newParticle->position = glm::vec3(0.0f);
+			newParticle->velocity = glm::vec3(static_cast<float>(std::rand() % 5), static_cast<float>(std::rand() % 5), static_cast<float>(std::rand() % 5));
+			newParticle->particleColour = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
+
+			std::cout << "Random Numbers: " << Randomize(0.0f, 1.0f) << std::endl;
+			particles.push_back(newParticle);
+		}
 	}
 }
 
@@ -54,22 +62,25 @@ void ParticleEmitter::Update(float deltaTime_) {
 	if (particles.size() > 0) {
 		for (auto particle : particles)
 		{
-			particle->SetLifeTime(particle->GetLifeTime() - deltaTime_);
-			if (particle->GetLifeTime() <= 0.0f) {
-				particle->SetPosition(glm::vec3(0.0f)); //Reset position and randomize other attributes
-				particle->SetVelocity(glm::vec3(static_cast<float>(std::rand() % 5), static_cast<float>(std::rand() % 5), static_cast<float>(std::rand() % 5)));
-				particle->SetParticleSize(0.05f);
-				particle->SetLifeTime(static_cast<float>(std::rand() % 2));
+			particle->lifeTime = (particle->lifeTime - deltaTime_);
+			if (particle->lifeTime <= 0.0f) {
+				particle->position = glm::vec3(0.0f); //Reset position and randomize other attributes
+				particle->velocity = glm::vec3(static_cast<float>(std::rand() % 5), static_cast<float>(std::rand() % 5), static_cast<float>(std::rand() % 5));
+				particle->particleSize = 0.05f;
+				particle->lifeTime = static_cast<float>(std::rand() % 2);
 			}
 
-			particle->SetPosition(particle->GetPosition() + (particle->GetVelocity() * deltaTime_));
+			particle->position = particle->position + (particle->velocity * deltaTime_);
 		}
 	}
 }
 
 void ParticleEmitter::Render(Camera* camera_) {
 	if (particles.size() > 0) {
-		glUseProgram(shaderID);
+		if (rendererType == RendererType::OPENGL) {
+			glUseProgram(shaderID);
+		}
+
 		for (auto particle : particles)
 		{
 			particle->Render(camera_);

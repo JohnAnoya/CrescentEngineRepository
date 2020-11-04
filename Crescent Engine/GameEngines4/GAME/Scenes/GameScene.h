@@ -21,6 +21,9 @@ public:
 private:
 	LightSource* lightSource; 
 	ParticleEmitter* particleEmitter; 
+
+	std::string selectedObject;
+	bool propertiesWindowOpen;
 };
 #endif
 

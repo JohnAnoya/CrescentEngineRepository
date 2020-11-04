@@ -2,10 +2,13 @@
 #define PARTICLEEMITTER_H
 
 #include <string>
+#include "OpenGLParticle.h"
 #include "../../Graphics/TextureHandler.h"
 #include "../../Graphics/ShaderHandler.h"
 #include "../../Math/Randomizer.h"
-#include "Particle.h"
+#include "../../Core/Renderers/Renderer.h"
+
+using namespace MATH;
 
 class ParticleEmitter{
 public: 
@@ -23,6 +26,8 @@ private:
 	GLuint textureID;
 
 	std::vector<Particle*> particles; 
+
+	RendererType rendererType;
 };
 #endif 
 

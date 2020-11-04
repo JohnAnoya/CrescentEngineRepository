@@ -100,4 +100,34 @@ void GameScene::Render()
 {
 	SceneGraph::GetInstance()->Render(CoreEngine::GetInstance()->GetCamera());
 	particleEmitter->Render(CoreEngine::GetInstance()->GetCamera());
+
+	ImGui::Begin("Hierachy");
+		ImGui::SetWindowSize(ImVec2(100, 500), ImGuiCond_FirstUseEver);
+
+		if (ImGui::Button("Test", ImVec2(350, 20))) {
+			std::cout << "The Test button has been pressed!" << std::endl;
+		}
+
+		std::map<std::string, GameObject*> sceneGameObjects = SceneGraph::GetInstance()->GetSceneGameObjects();
+		std::map<std::string, GameObject*>::iterator it;
+		
+		for (it = sceneGameObjects.begin(); it != sceneGameObjects.end(); it++) {
+
+			if (ImGui::Button(it->second->GetTag().c_str(), ImVec2(350, 20))) {
+				propertiesWindowOpen = true;
+				selectedObject = it->second->GetTag();
+			}
+		}
+	ImGui::End();
+
+	if (propertiesWindowOpen) {
+		ImGui::Begin("Properties Panel");
+			ImGui::Text("Currently Editing: %s", selectedObject.c_str());
+			ImGui::Text("Position X:");
+			ImGui::SameLine();
+		ImGui::End();
+	}
+
+	ImGui::Render();
+	ImGui_ImplSdlGL3_RenderDrawData(ImGui::GetDrawData());
 }

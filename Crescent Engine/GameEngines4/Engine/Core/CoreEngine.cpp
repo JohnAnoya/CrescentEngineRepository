@@ -6,8 +6,7 @@ std::unique_ptr<CoreEngine> CoreEngine::engineInstance = nullptr;
 CoreEngine::CoreEngine()
 {
 	window = nullptr;
-	isRunning = false;
-	propertiesWindowOpen = false; 
+	isRunning = false; 
 	fps = 144;
 	gameInterface = nullptr;
 	currentSceneNum = 0; 
@@ -230,45 +229,6 @@ void CoreEngine::Render()
 	{
 		gameInterface->Render();
 	}
-
-	ImGui::Begin("Hierachy");
-		ImGui::SetWindowSize(ImVec2(100, 500), ImGuiCond_FirstUseEver);
-
-		if (ImGui::Button("Test", ImVec2(350, 20))) {
-			std::cout << "The Test button has been pressed!" << std::endl; 
-		}
-
-		std::map<std::string, GameObject*> sceneGameObjects = SceneGraph::GetInstance()->GetSceneGameObjects();
-		std::map<std::string, GameObject*>::iterator it;
-		for (it = sceneGameObjects.begin(); it != sceneGameObjects.end(); it++) {
-			 
-			if (ImGui::Button(it->second->GetTag().c_str(), ImVec2(350, 20))) {
-				propertiesWindowOpen = true; 
-				selectedObject = it->second->GetTag();
-			}
-		}
-	ImGui::End();
-
-	if (propertiesWindowOpen) {
-		if (setInitialObjectPos == false) {
-			setInitialObjectPos = true; 
-			Position[0] = SceneGraph::GetInstance()->GetGameObject(selectedObject)->GetPosition().x;
-			Position[1] = SceneGraph::GetInstance()->GetGameObject(selectedObject)->GetPosition().y;
-			Position[2] = SceneGraph::GetInstance()->GetGameObject(selectedObject)->GetPosition().z;
-		}
-
-		ImGui::Begin("Properties Panel");
-			ImGui::Text("Currently Editing: %s", selectedObject.c_str());
-			ImGui::Text("Position X:"); 
-			ImGui::SameLine();
-			ImGui::SliderFloat("", &Position[0], Position[0] - 1.0f, Position[0] + 1.0f);
-
-			SceneGraph::GetInstance()->GetGameObject(selectedObject)->SetPosition(glm::vec3(Position[0], Position[1], Position[2]));
-		ImGui::End();
-	}
-
-	ImGui::Render();
-	ImGui_ImplSdlGL3_RenderDrawData(ImGui::GetDrawData());
 }
 
 void CoreEngine::ImGuiDestroy() {

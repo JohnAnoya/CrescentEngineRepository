@@ -89,11 +89,6 @@ private:
 
 	RendererType rendererType; 
 	Renderer* renderer; 
-
-	std::string selectedObject;
-	bool propertiesWindowOpen;
-	bool setInitialObjectPos;
-	float Position[3];
 };
 #endif
 

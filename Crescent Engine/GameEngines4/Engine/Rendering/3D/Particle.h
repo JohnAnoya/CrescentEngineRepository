@@ -18,45 +18,18 @@ struct Vertex3D
 
 class Particle{
 public: 
-	Particle(GLuint shaderProgram_, GLuint textureID_);
-	~Particle();
-
-	void Render(Camera* camera_);
-
-	void SetLifeTime(float lifeTime_); 
-	void SetParticleSize(float particleSize_); 
-	void SetPosition(glm::vec3 position_); 
-	void SetVelocity(glm::vec3 velocity_); 
-	void SetParticleColour(glm::vec4 colour_);
-
-	float GetLifeTime(); 
-	float GetParticleSize(); 
-	glm::vec3 GetPosition(); 
-	glm::vec3 GetVelocity();
-	glm::vec4 GetParticleColour(); 
-
-private: 
-	void GenerateBuffers(); 
-	std::vector<Vertex3D> vertexList;
-
-	GLuint VAO, VBO;
-	GLuint shaderProgram;
-	GLuint textureID; 
-	GLuint modelLocation, viewLocation, projectionLocation;
-	GLuint colourLocation; 
-	GLuint textureLocation; 
+	Particle(){}
+	virtual ~Particle() {}
+	virtual void Render(Camera* camera_) = 0;
 
 	float lifeTime;
 	float particleSize;
-	float angle; 
+	float angle;
 
 	glm::vec3 velocity;
 	glm::vec3 position;
 	glm::vec4 particleColour;
-	glm::vec3 rotation; 
-
-	glm::mat4 GetTransform(glm::vec3 position_, float angle_, glm::vec3 rotation_, glm::vec3 scale_) const;
-	friend class ParticleEmitter;
+	glm::vec3 rotation;
 };
 #endif 
 
