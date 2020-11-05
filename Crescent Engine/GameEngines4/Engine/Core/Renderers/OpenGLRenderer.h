@@ -9,6 +9,7 @@ public:
 	OpenGLRenderer();
 	virtual ~OpenGLRenderer();
 	SDL_Window* CreateWindow(std::string name_, int width_, int height_) override;
+	void Render() override;
 	void OnDestroy() override; 
 private: 
 	void SetPreAttributes();

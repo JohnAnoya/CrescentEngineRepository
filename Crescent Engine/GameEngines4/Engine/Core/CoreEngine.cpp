@@ -26,7 +26,7 @@ bool CoreEngine::OnCreate(std::string name_, int width_, int height_)
 
 	switch (rendererType) {
 		case RendererType::VULKAN: 
-			//Create a new Vulkan object
+			renderer = new VulkanRenderer(); //Create a new Vulkan object
 				break;
 		default: 
 			renderer = new OpenGLRenderer(); //As default, create a new OpenGL renderer object 
@@ -71,7 +71,11 @@ void CoreEngine::Run()
 		timer.UpdateFrameTick();
 		EventListener::Update();
 		Update(timer.GetDeltaTime());
-		ImGui_ImplSdlGL3_NewFrame(window->GetWindow());
+
+		if (rendererType == RendererType::OPENGL) {
+			ImGui_ImplSdlGL3_NewFrame(window->GetWindow());
+		}
+
 		Render();
 		SDL_Delay(timer.GetSleepTime(fps));
 	}

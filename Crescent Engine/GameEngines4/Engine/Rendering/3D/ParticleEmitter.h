@@ -19,9 +19,9 @@ public:
 	void Update(float deltaTime_); 
 	void Render(Camera* camera_); 
 private: 
-	float Randomize(float min_, float max_);
-
 	int amountParticles; 
+	Randomizer randomizer;
+
 	GLuint shaderID;
 	GLuint textureID;
 

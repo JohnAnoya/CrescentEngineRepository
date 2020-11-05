@@ -17,6 +17,7 @@
 #include "../Rendering/2D/imgui/imgui.h"
 #include "../Rendering/2D/imgui/imgui_impl_sdl_gl3.h"
 #include "Renderers/OpenGLRenderer.h"
+#include "Renderers/VulkanRenderer.h"
 
 using namespace std::string_literals;
 

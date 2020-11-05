@@ -25,13 +25,6 @@ ParticleEmitter::~ParticleEmitter() {
 	}
 }
 
-float ParticleEmitter::Randomize(float min_, float max_) {
-	Randomizer randomizer;
-	
-	
-	return randomizer.rand(min_, max_); 
-}
-
 void ParticleEmitter::CreateParticles() {
 	if (textureID == 0) {
 		Debugger::Error("Could not create particles, textureID is equal to 0", "ParticleEmitter.cpp", __LINE__);
@@ -46,13 +39,12 @@ void ParticleEmitter::CreateParticles() {
 	for (int i = 0; i < amountParticles; i++) {
 		if (rendererType == RendererType::OPENGL) {
 			OpenGLParticle* newParticle = new OpenGLParticle(shaderID, textureID);
-			newParticle->lifeTime = (static_cast<float>(std::rand() % 2));
+			newParticle->lifeTime = (randomizer.rand(0.0f, 2.0f));
 			newParticle->particleSize = 0.05f;
 			newParticle->position = glm::vec3(0.0f);
-			newParticle->velocity = glm::vec3(static_cast<float>(std::rand() % 5), static_cast<float>(std::rand() % 5), static_cast<float>(std::rand() % 5));
+			newParticle->velocity = glm::vec3(randomizer.rand(0.0f, 3.0f), randomizer.rand(0.0f, 3.0f), randomizer.rand(0.0f, 3.0f));
 			newParticle->particleColour = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
 
-			std::cout << "Random Numbers: " << Randomize(0.0f, 1.0f) << std::endl;
 			particles.push_back(newParticle);
 		}
 	}
@@ -65,9 +57,9 @@ void ParticleEmitter::Update(float deltaTime_) {
 			particle->lifeTime = (particle->lifeTime - deltaTime_);
 			if (particle->lifeTime <= 0.0f) {
 				particle->position = glm::vec3(0.0f); //Reset position and randomize other attributes
-				particle->velocity = glm::vec3(static_cast<float>(std::rand() % 5), static_cast<float>(std::rand() % 5), static_cast<float>(std::rand() % 5));
+				particle->velocity = glm::vec3(randomizer.rand(0.0f, 3.0f), randomizer.rand(0.0f, 3.0f), randomizer.rand(0.0f, 3.0f));
 				particle->particleSize = 0.05f;
-				particle->lifeTime = static_cast<float>(std::rand() % 2);
+				particle->lifeTime = randomizer.rand(0.0f, 2.0f);
 			}
 
 			particle->position = particle->position + (particle->velocity * deltaTime_);

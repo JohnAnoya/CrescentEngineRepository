@@ -66,9 +66,11 @@ void Game1::BuildScene()
 	case 1:
 		currentScene = new GameScene();
 		break;
-
 	case 2: 
 		currentScene = new TestAIScene(); 
+		break; 
+	case 3: 
+		currentScene = new VulkanTestScene();
 		break; 
 	default:
 		currentScene = new StartScene();

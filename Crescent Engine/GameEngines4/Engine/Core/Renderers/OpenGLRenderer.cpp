@@ -8,6 +8,10 @@ OpenGLRenderer::~OpenGLRenderer() {
 	OnDestroy(); 
 }
 
+void OpenGLRenderer::Render() {
+
+}
+
 SDL_Window* OpenGLRenderer::CreateWindow(std::string name_, int width_, int height_) {
 	SetPreAttributes();
 	SDL_Window* window = SDL_CreateWindow(name_.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width_, height_, SDL_WINDOW_OPENGL);

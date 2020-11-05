@@ -165,6 +165,12 @@
     <ClCompile Include="Engine\Rendering\3D\OpenGLParticle.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Engine\Core\Renderers\VulkanRenderer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GAME\Scenes\VulkanTestScene.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Core\Window.h">
@@ -347,6 +353,12 @@
     <ClInclude Include="Engine\Rendering\3D\OpenGLParticle.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Engine\Core\Renderers\VulkanRenderer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GAME\Scenes\VulkanTestScene.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Engine\Shaders\ColourVertexShader.glsl" />
@@ -356,5 +368,7 @@
     <None Include="packages.config" />
     <None Include="Engine\Shaders\ParticleFragShader.glsl" />
     <None Include="Engine\Shaders\ParticleVertShader.glsl" />
+    <None Include="Engine\Shaders\frag.spv" />
+    <None Include="Engine\Shaders\vert.spv" />
   </ItemGroup>
 </Project>

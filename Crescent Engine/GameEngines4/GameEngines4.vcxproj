@@ -101,12 +101,13 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <AdditionalIncludeDirectories>C:\VulkanSDK\1.2.148.1\Include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\GameDev\OpenGL\lib;C:\GameDev\SDL\lib;C:\GameDev\FMOD\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SDL2.lib;SDL2_image.lib;SDL2main.lib;SDL2test.lib;glew32.lib;glew32s.lib;opengl32.lib;fmod_vc.lib;fmodL_vc.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\GameDev\OpenGL\lib;C:\GameDev\SDL\lib;C:\GameDev\FMOD\lib;C:\VulkanSDK\1.2.148.1\Lib32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL2.lib;SDL2_image.lib;SDL2main.lib;SDL2test.lib;glew32.lib;glew32s.lib;opengl32.lib;fmod_vc.lib;fmodL_vc.lib;vulkan-1.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -212,6 +213,8 @@
     <ClCompile Include="Engine\Core\Renderers\OpenGLRenderer.cpp" />
     <ClCompile Include="Engine\Rendering\3D\OpenGLMesh.cpp" />
     <ClCompile Include="Engine\Rendering\3D\OpenGLParticle.cpp" />
+    <ClCompile Include="Engine\Core\Renderers\VulkanRenderer.cpp" />
+    <ClCompile Include="GAME\Scenes\VulkanTestScene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Math\BlendedSteering.h" />
@@ -274,13 +277,17 @@
     <ClInclude Include="Engine\Core\Renderers\OpenGLRenderer.h" />
     <ClInclude Include="Engine\Rendering\3D\OpenGLMesh.h" />
     <ClInclude Include="Engine\Rendering\3D\OpenGLParticle.h" />
+    <ClInclude Include="Engine\Core\Renderers\VulkanRenderer.h" />
+    <ClInclude Include="GAME\Scenes\VulkanTestScene.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Engine\Shaders\ColourFragmentShader.glsl" />
     <None Include="Engine\Shaders\ColourVertexShader.glsl" />
+    <None Include="Engine\Shaders\frag.spv" />
     <None Include="Engine\Shaders\FragementShader.glsl" />
     <None Include="Engine\Shaders\ParticleFragShader.glsl" />
     <None Include="Engine\Shaders\ParticleVertShader.glsl" />
+    <None Include="Engine\Shaders\vert.spv" />
     <None Include="Engine\Shaders\VertexShader.glsl" />
     <None Include="packages.config" />
   </ItemGroup>

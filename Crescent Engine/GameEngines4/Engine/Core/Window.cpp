@@ -30,14 +30,7 @@ bool Window::OnCreate(std::string name_, int width_, int height_, Renderer* rend
 		return false;
 	}
 	
-	// Converting const char to string by storing in new string 
-	const GLubyte* GPUInfo = glGetString(GL_VENDOR);
-	std::string SgpuInfo((char*)GPUInfo);
-	Debugger::Info(SgpuInfo, " Window.cpp ", __LINE__);
 
-	const GLubyte* openGLVer = glGetString(GL_VERSION);
-	std::string SopenGLVer((char*)openGLVer);
-	Debugger::Info(SopenGLVer, " Window.cpp ", __LINE__);
 
 	return true;
 }

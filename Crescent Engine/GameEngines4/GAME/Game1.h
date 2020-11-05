@@ -5,7 +5,7 @@
 #include "Scenes/StartScene.h"
 #include "Scenes/GameScene.h"
 #include "Scenes/TestAIScene.h"
-
+#include "Scenes/VulkanTestScene.h"
 
 class Game1 : public GameInterface
 {
