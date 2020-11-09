@@ -7,9 +7,19 @@ using namespace tinyxml2;
 int main(int argc, char* argv[])
 {
 	CoreEngine::GetInstance()->SetGameInterface(new Game1, RendererType::OPENGL);
+	
+	
+	XMLDocument* windowProperties = new XMLDocument();
+	windowProperties->LoadFile("Resources/XMLFiles/WindowsProperties.xml");	
+	std::string EngineName;
 
-	//XMLDocument windowProperties; 
-	//windowProperties.LoadFile("./Resources/XMLFiles");
+	
+	for (XMLElement* it = windowProperties->FirstChildElement("WindowProperties"); it != NULL; it = it->NextSiblingElement())
+	{
+		std::cout << it->GetText() << std::endl; 
+		//std::cout << "Engine Name: " << EngineName << std::endl;
+	}
+	
 
 	if (!CoreEngine::GetInstance()->OnCreate("Engine Window", 1600, 900)) 
 	{

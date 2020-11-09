@@ -163,6 +163,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Engine\Core\XMLParser\tinyxml2.cpp" />
     <ClCompile Include="Engine\Math\BlendedSteering.cpp" />
     <ClCompile Include="Engine\Math\CohesionSteering.cpp" />
     <ClCompile Include="GAME\TesterClasses\AudioSource.cpp" />
@@ -217,6 +218,7 @@
     <ClCompile Include="GAME\Scenes\VulkanTestScene.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Engine\Core\XMLParser\tinyxml2.h" />
     <ClInclude Include="Engine\Math\BlendedSteering.h" />
     <ClInclude Include="Engine\Math\CohesionSteering.h" />
     <ClInclude Include="GAME\TesterClasses\AudioSource.h" />
@@ -290,6 +292,9 @@
     <None Include="Engine\Shaders\vert.spv" />
     <None Include="Engine\Shaders\VertexShader.glsl" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Xml Include="Resources\XMLFiles\WindowsProperties.xml" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -171,6 +171,9 @@
     <ClCompile Include="GAME\Scenes\VulkanTestScene.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Engine\Core\XMLParser\tinyxml2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Core\Window.h">
@@ -359,6 +362,9 @@
     <ClInclude Include="GAME\Scenes\VulkanTestScene.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Engine\Core\XMLParser\tinyxml2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Engine\Shaders\ColourVertexShader.glsl" />
@@ -370,5 +376,8 @@
     <None Include="Engine\Shaders\ParticleVertShader.glsl" />
     <None Include="Engine\Shaders\frag.spv" />
     <None Include="Engine\Shaders\vert.spv" />
+  </ItemGroup>
+  <ItemGroup>
+    <Xml Include="Resources\XMLFiles\WindowsProperties.xml" />
   </ItemGroup>
 </Project>
