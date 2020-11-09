@@ -1,6 +1,7 @@
 #ifndef VULKANRENDERER_H 
 #define VULKANRENDERER_H 
 
+#include <algorithm>
 #include <set>
 #include <vector>
 #include <optional>
