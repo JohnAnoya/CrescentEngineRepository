@@ -8,20 +8,30 @@ int main(int argc, char* argv[])
 {
 	CoreEngine::GetInstance()->SetGameInterface(new Game1, RendererType::OPENGL);
 	
-	
 	XMLDocument* windowProperties = new XMLDocument();
-	windowProperties->LoadFile("Resources/XMLFiles/WindowsProperties.xml");	
-	std::string EngineName;
+	windowProperties->LoadFile("Resources/XMLFiles/WindowsProperties.xml");
 
-	
-	for (XMLElement* it = windowProperties->FirstChildElement("WindowProperties"); it != NULL; it = it->NextSiblingElement())
+	std::string EngineName;
+	int width = 0;
+	int height = 0;
+
+	for (XMLElement* it = windowProperties->FirstChildElement("WindowProperties")->FirstChildElement(); it != NULL; it = it->NextSiblingElement())
 	{
-		std::cout << it->GetText() << std::endl; 
-		//std::cout << "Engine Name: " << EngineName << std::endl;
+		std::string ElementName = it->Name();
+		if (ElementName == "EngineName") {
+			EngineName = it->GetText();
+		}
+
+		else if (ElementName == "Width") {
+			width = std::stoi(it->GetText());
+		}
+
+		else if (ElementName == "Height") {
+			height = std::stoi(it->GetText());
+		}
 	}
 	
-
-	if (!CoreEngine::GetInstance()->OnCreate("Engine Window", 1600, 900)) 
+	if (!CoreEngine::GetInstance()->OnCreate(EngineName, width, height)) 
 	{
 		Debugger::Error("Engine failed to be created ", "main.cpp ", __LINE__);
 		return 0;
