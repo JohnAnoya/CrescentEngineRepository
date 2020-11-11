@@ -2,7 +2,7 @@
 #define TEST_H
 class Test
 {
-	Test(); 
-	~Test(); 
+public: 
+	
 };
 #endif
