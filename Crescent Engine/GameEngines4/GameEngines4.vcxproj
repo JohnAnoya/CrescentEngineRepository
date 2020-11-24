@@ -163,9 +163,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Engine\Math\Decision.cpp" />
     <ClCompile Include="Engine\Core\XMLParser\tinyxml2.cpp" />
     <ClCompile Include="Engine\Math\BlendedSteering.cpp" />
     <ClCompile Include="Engine\Math\CohesionSteering.cpp" />
+    <ClCompile Include="Engine\Math\FloatDecision.cpp" />
     <ClCompile Include="GAME\TesterClasses\AudioSource.cpp" />
     <ClCompile Include="Engine\Graphics\AudioHandler.cpp" />
     <ClCompile Include="Engine\Math\KinematicSteeringOutput.cpp" />
@@ -218,9 +220,12 @@
     <ClCompile Include="GAME\Scenes\VulkanTestScene.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Engine\Math\Decision.h" />
     <ClInclude Include="Engine\Core\XMLParser\tinyxml2.h" />
     <ClInclude Include="Engine\Math\BlendedSteering.h" />
     <ClInclude Include="Engine\Math\CohesionSteering.h" />
+    <ClInclude Include="Engine\Math\DecisionTreeNode.h" />
+    <ClInclude Include="Engine\Math\FloatDecision.h" />
     <ClInclude Include="GAME\TesterClasses\AudioSource.h" />
     <ClInclude Include="Engine\Graphics\AudioHandler.h" />
     <ClInclude Include="Engine\Math\KinematicSteeringOutput.h" />
