@@ -1,0 +1,10 @@
+<?xml version = "1.0"?> 
+<decisionTree>
+	<test>scene has objects</test>
+	<true>
+	CreateUIButtons 
+	</true> 
+	<false>
+	CreateTestButtons
+	</false> 
+</decisionTree> 

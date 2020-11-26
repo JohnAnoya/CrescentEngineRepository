@@ -3,7 +3,7 @@
 
 class DecisionTreeNode {
 public: 
-	DecisionTreeNode() {}
+	DecisionTreeNode() { }
 	virtual ~DecisionTreeNode() {}
 	virtual DecisionTreeNode makeDecision();
 };

@@ -13,12 +13,13 @@ float FloatDecision::testValue() {
 }
 
 DecisionTreeNode FloatDecision::getBranch() {
-	if (maxValue >= testValue() && testValue() >= minValue) {
+	if (maxValue >= testValue() && testValue() >= minValue) {	
 		
 		return trueNode;
 	}
 	
 	else {
+		
 		return falseNode;
 	}
 }
