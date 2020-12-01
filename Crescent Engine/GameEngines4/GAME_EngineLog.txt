@@ -1,3 +1,2 @@
 [INFO]: Creating Start Scene in: StartScene.cpp on line: 16
 [INFO]: Engine launched successfully in: CoreEngine.cpp  on line: 58
-[INFO]: Creating Game Scene in: GameScene.cpp on line: 52

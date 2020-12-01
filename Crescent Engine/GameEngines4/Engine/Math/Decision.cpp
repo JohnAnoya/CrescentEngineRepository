@@ -1,5 +1,6 @@
 #include "Decision.h"
 
+/*
 Decision::Decision() : DecisionTreeNode(){
 	
 }
@@ -13,3 +14,5 @@ DecisionTreeNode Decision::makeDecision() {
 
 	return branch.makeDecision();
 }
+
+*/

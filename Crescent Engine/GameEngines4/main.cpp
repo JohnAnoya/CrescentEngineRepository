@@ -6,7 +6,7 @@ using namespace tinyxml2;
 
 int main(int argc, char* argv[])
 {
-	CoreEngine::GetInstance()->SetGameInterface(new Game1, RendererType::OPENGL);
+	CoreEngine::GetInstance()->SetGameInterface(new Game1, RendererType::VULKAN);
 	
 	XMLDocument* windowProperties = new XMLDocument();
 	windowProperties->LoadFile("Resources/XMLFiles/WindowsProperties.xml");
