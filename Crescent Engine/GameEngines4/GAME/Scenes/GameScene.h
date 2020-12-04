@@ -6,6 +6,7 @@
 #include "../TesterClasses/AIComponent.h"
 #include "../../Engine/Core/CoreEngine.h"
 #include "../../Engine/Rendering/3D/ParticleEmitter.h"
+#include "../../Engine//Math/IntDecision.h"
 #include <glm/gtx/string_cast.hpp>
 
 class GameScene : public Scene
@@ -21,9 +22,11 @@ public:
 private:
 	LightSource* lightSource; 
 	ParticleEmitter* particleEmitter; 
+	IntDecision* intDecision; 
 
 	std::string selectedObject;
 	bool propertiesWindowOpen;
+	bool hasObjects;
 };
 #endif
 

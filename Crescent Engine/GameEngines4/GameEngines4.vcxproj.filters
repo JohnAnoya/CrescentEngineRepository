@@ -177,7 +177,7 @@
     <ClCompile Include="Engine\Math\Decision.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Math\FloatDecision.cpp">
+    <ClCompile Include="Engine\Math\IntDecision.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -377,7 +377,7 @@
     <ClInclude Include="Engine\Math\Decision.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Math\FloatDecision.h">
+    <ClInclude Include="Engine\Math\IntDecision.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -394,5 +394,6 @@
   </ItemGroup>
   <ItemGroup>
     <Xml Include="Resources\XMLFiles\WindowsProperties.xml" />
+    <Xml Include="Resources\XMLFiles\decisionTree.xml" />
   </ItemGroup>
 </Project>

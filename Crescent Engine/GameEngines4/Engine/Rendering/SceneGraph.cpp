@@ -94,6 +94,10 @@ std::map<std::string, GameObject*> SceneGraph::GetSceneGameObjects() {
 	}
 }
 
+int SceneGraph::GetSceneGameObjectsCount() {
+	return sceneGameObjects.size();
+}
+
 void SceneGraph::Update(const float deltaTime_) {
 	for (auto gameObjects : sceneGameObjects) {
 		gameObjects.second->Update(deltaTime_);

@@ -21,6 +21,7 @@ public:
 	void AddGameObject(GameObject* gameObject_, std::string tag_ = ""); 
 	GameObject* GetGameObject(std::string tag_); 
 	std::map<std::string, GameObject*> GetSceneGameObjects(); 
+	int GetSceneGameObjectsCount(); 
 
 	void Update(const float deltaTime_); 
 	void Render(Camera* camera_);

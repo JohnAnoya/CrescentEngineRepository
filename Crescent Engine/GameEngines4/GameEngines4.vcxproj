@@ -167,7 +167,7 @@
     <ClCompile Include="Engine\Core\XMLParser\tinyxml2.cpp" />
     <ClCompile Include="Engine\Math\BlendedSteering.cpp" />
     <ClCompile Include="Engine\Math\CohesionSteering.cpp" />
-    <ClCompile Include="Engine\Math\FloatDecision.cpp" />
+    <ClCompile Include="Engine\Math\IntDecision.cpp" />
     <ClCompile Include="GAME\TesterClasses\AudioSource.cpp" />
     <ClCompile Include="Engine\Graphics\AudioHandler.cpp" />
     <ClCompile Include="Engine\Math\KinematicSteeringOutput.cpp" />
@@ -225,7 +225,7 @@
     <ClInclude Include="Engine\Math\BlendedSteering.h" />
     <ClInclude Include="Engine\Math\CohesionSteering.h" />
     <ClInclude Include="Engine\Math\DecisionTreeNode.h" />
-    <ClInclude Include="Engine\Math\FloatDecision.h" />
+    <ClInclude Include="Engine\Math\IntDecision.h" />
     <ClInclude Include="GAME\TesterClasses\AudioSource.h" />
     <ClInclude Include="Engine\Graphics\AudioHandler.h" />
     <ClInclude Include="Engine\Math\KinematicSteeringOutput.h" />
@@ -299,6 +299,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Xml Include="Resources\XMLFiles\decisionTree.xml" />
     <Xml Include="Resources\XMLFiles\WindowsProperties.xml" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

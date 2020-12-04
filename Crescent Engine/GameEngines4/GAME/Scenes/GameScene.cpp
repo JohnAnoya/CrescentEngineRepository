@@ -84,6 +84,11 @@ bool GameScene::OnCreate()
 
 	particleEmitter = new ParticleEmitter(15, "defaultParticle.png", "particleShader");
 
+	intDecision = new IntDecision("./Resources/XMLFiles/", "decisionTree.xml", 0);
+	DecisionTreeNode getDecision = intDecision->makeDecision(); 
+	
+	hasObjects = getDecision.IntValue;
+
 	return true;
 }
 
@@ -104,18 +109,20 @@ void GameScene::Render()
 	ImGui::Begin("Hierachy");
 		ImGui::SetWindowSize(ImVec2(100, 500), ImGuiCond_FirstUseEver);
 
-		if (ImGui::Button("Test", ImVec2(350, 20))) {
-			std::cout << "The Test button has been pressed!" << std::endl;
-		}
+		if (hasObjects) {
+			if (ImGui::Button("Test", ImVec2(350, 20))) {
+				std::cout << "The Test button has been pressed!" << std::endl;
+			}
 
-		std::map<std::string, GameObject*> sceneGameObjects = SceneGraph::GetInstance()->GetSceneGameObjects();
-		std::map<std::string, GameObject*>::iterator it;
-		
-		for (it = sceneGameObjects.begin(); it != sceneGameObjects.end(); it++) {
+			std::map<std::string, GameObject*> sceneGameObjects = SceneGraph::GetInstance()->GetSceneGameObjects();
+			std::map<std::string, GameObject*>::iterator it;
 
-			if (ImGui::Button(it->second->GetTag().c_str(), ImVec2(350, 20))) {
-				propertiesWindowOpen = true;
-				selectedObject = it->second->GetTag();
+			for (it = sceneGameObjects.begin(); it != sceneGameObjects.end(); it++) {
+
+				if (ImGui::Button(it->second->GetTag().c_str(), ImVec2(350, 20))) {
+					propertiesWindowOpen = true;
+					selectedObject = it->second->GetTag();
+				}
 			}
 		}
 	ImGui::End();

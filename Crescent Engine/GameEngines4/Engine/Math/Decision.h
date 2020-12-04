@@ -9,8 +9,8 @@ public:
 	virtual ~Decision(); 
 
 	DecisionTreeNode makeDecision() override;
-	virtual DecisionTreeNode getBranch();
-	virtual float testValue(); 
+	virtual DecisionTreeNode getBranch() = 0;
+	virtual int testValue() = 0; 
 
 	DecisionTreeNode trueNode; 
 	DecisionTreeNode falseNode; 
