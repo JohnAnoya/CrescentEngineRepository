@@ -84,10 +84,18 @@ bool GameScene::OnCreate()
 
 	particleEmitter = new ParticleEmitter(15, "defaultParticle.png", "particleShader");
 
-	intDecision = new IntDecision("./Resources/XMLFiles/", "decisionTree.xml", 0);
+	intDecision = new IntDecision("./Resources/XMLFiles/", "decisionTree.xml", SceneGraph::GetInstance()->GetSceneGameObjectsCount());
 	DecisionTreeNode getDecision = intDecision->makeDecision(); 
 	
 	hasObjects = getDecision.IntValue;
+
+	if (hasObjects) {
+		std::cout << "Scene has objects!" << std::endl; 
+	}
+
+	else {
+		std::cout << "Scene does NOT have any objects!" << std::endl; 
+	}
 
 	return true;
 }
