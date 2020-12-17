@@ -3,7 +3,7 @@
 
 TestAIScene::TestAIScene() : Scene()
 {
-
+	hasObjects = true; 
 }
 
 TestAIScene::~TestAIScene()
@@ -63,12 +63,12 @@ bool TestAIScene::OnCreate()
 
 	CollisionHandler::GetInstance()->OnCreate(100.0f);
 
-	Model* LeaderDiceModel = new Model("./Resources/Models/Dice.obj", "./Resources/Materials/Dice.mtl", ShaderHandler::GetInstance()->GetShader("basicShader"));
-	SceneGraph::GetInstance()->AddModel(LeaderDiceModel); 
-	GameObject* LeaderDiceObject = new GameObject(LeaderDiceModel, glm::vec3(0.0f));
-	LeaderDiceObject->SetScale(glm::vec3(0.5f));
-	LeaderDiceObject->AddComponent<AIComponent>(glm::vec3());
-	SceneGraph::GetInstance()->AddGameObject(LeaderDiceObject, "Leader");
+	/*Model* DiceModel = new Model("./Resources/Models/Dice.obj", "./Resources/Materials/Dice.mtl", ShaderHandler::GetInstance()->GetShader("basicShader"));
+	SceneGraph::GetInstance()->AddModel(DiceModel); 
+	GameObject* DiceObject = new GameObject(DiceModel, glm::vec3(0.0f));
+	DiceObject->SetScale(glm::vec3(0.5f));
+	DiceObject->AddComponent<AIComponent>(glm::vec3());
+	SceneGraph::GetInstance()->AddGameObject(DiceObject, "Dice");*/
 
 	std::vector<Model*> models(10);
 	std::vector<GameObject*> dices(10);
@@ -96,4 +96,36 @@ void TestAIScene::Update(const float deltaTime_)
 void TestAIScene::Render()
 {
 	SceneGraph::GetInstance()->Render(CoreEngine::GetInstance()->GetCamera());
+
+	ImGui::Begin("Hierachy");
+	ImGui::SetWindowSize(ImVec2(100, 500), ImGuiCond_FirstUseEver);
+
+	if (hasObjects) {
+		std::map<std::string, GameObject*> sceneGameObjects = SceneGraph::GetInstance()->GetSceneGameObjects();
+		std::map<std::string, GameObject*>::iterator it;
+
+		for (it = sceneGameObjects.begin(); it != sceneGameObjects.end(); it++) {
+
+			if (ImGui::Button(it->second->GetTag().c_str(), ImVec2(350, 20))) {
+				propertiesWindowOpen = true;
+				selectedObject = it->second->GetTag();
+			}
+		}
+	}
+	ImGui::End();
+
+	if (propertiesWindowOpen) {
+		ImGui::Begin("Properties Panel");
+		ImGui::Text("Currently Editing: %s", selectedObject.c_str());
+		ImGui::Text("Position X:");
+		ImGui::SameLine();
+
+		float currentPosition = SceneGraph::GetInstance()->GetGameObject(selectedObject.c_str())->GetPosition().x;
+		ImGui::SliderFloat("", &currentPosition, currentPosition - 0.1f, currentPosition + 0.1f);
+		SceneGraph::GetInstance()->GetGameObject(selectedObject.c_str())->SetPosition(glm::vec3(currentPosition, SceneGraph::GetInstance()->GetGameObject(selectedObject.c_str())->GetPosition().y, SceneGraph::GetInstance()->GetGameObject(selectedObject.c_str())->GetPosition().z));
+		ImGui::End();
+	}
+
+	ImGui::Render();
+	ImGui_ImplSdlGL3_RenderDrawData(ImGui::GetDrawData());
 }

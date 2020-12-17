@@ -28,9 +28,7 @@ bool AIComponent::OnCreate(GameObject* parent_) {
 
 void AIComponent::Update(float deltaTime_) {
 	if (parent != nullptr) {
-		if (parent->GetTag() == "Leader") {
-			parent->SetPosition(parent->GetPosition() + 1.0f * deltaTime_);
-		}
+
 		/* Kinematic Seek Test */
 		//parent->SetPosition(parent->GetPosition() + kinematicSeek->getSteering(parent)->GetVelocity() * deltaTime_); 
 		//parent->SetAngle(kinematicSeek->getSteering(parent)->GetRotation());
@@ -38,6 +36,7 @@ void AIComponent::Update(float deltaTime_) {
 		//parent->SetPosition(parent->GetPosition() + kinematicArrive->getSteering(parent)->GetVelocity() * deltaTime_); 
 		//parent->SetAngle(kinematicArrive->getSteering(parent)->GetRotation());
 
+		/*Blended Steering for Flocking*/
 		parent->SetPosition(parent->GetPosition() + blendedSteering->getSteering(parent)->GetLinear() * deltaTime_);
 	}
 }

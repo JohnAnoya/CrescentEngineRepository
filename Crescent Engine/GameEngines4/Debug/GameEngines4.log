@@ -1,3 +1,2 @@
-﻿  GameScene.cpp
-C:\Users\RuthlessLua\Desktop\CrescentEngineRepository\Crescent Engine\GameEngines4\Engine\Math\Randomizer.h(56,21): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+﻿  CoreEngine.cpp
   GameEngines4.vcxproj -> C:\Users\RuthlessLua\Desktop\CrescentEngineRepository\Crescent Engine\Debug\GameEngines4.exe

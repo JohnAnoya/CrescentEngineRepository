@@ -2,8 +2,8 @@
 
 KinematicSeek::KinematicSeek() {
 	result = new KinematicSteeringOutput();
-	targetPosition = glm::vec3(0.0f, -1.0f, 0.0f);
-	maxSpeed = 5.0f;
+	targetPosition = glm::vec3(-6.0f, -1.0f, 0.0f);
+	maxSpeed = 1.0f;
 }
 
 KinematicSeek::~KinematicSeek() {

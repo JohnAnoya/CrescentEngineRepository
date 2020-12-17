@@ -87,6 +87,7 @@ private:
 	int currentSceneNum;
 
 	Camera* camera;
+	float CameraSpeedIncrement; 
 
 	RendererType rendererType; 
 	Renderer* renderer; 

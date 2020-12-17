@@ -118,10 +118,6 @@ void GameScene::Render()
 		ImGui::SetWindowSize(ImVec2(100, 500), ImGuiCond_FirstUseEver);
 
 		if (hasObjects) {
-			if (ImGui::Button("Test", ImVec2(350, 20))) {
-				std::cout << "The Test button has been pressed!" << std::endl;
-			}
-
 			std::map<std::string, GameObject*> sceneGameObjects = SceneGraph::GetInstance()->GetSceneGameObjects();
 			std::map<std::string, GameObject*>::iterator it;
 
@@ -140,6 +136,10 @@ void GameScene::Render()
 			ImGui::Text("Currently Editing: %s", selectedObject.c_str());
 			ImGui::Text("Position X:");
 			ImGui::SameLine();
+
+			float currentPosition = SceneGraph::GetInstance()->GetGameObject(selectedObject.c_str())->GetPosition().x;
+			ImGui::SliderFloat("", &currentPosition, currentPosition - 0.1f, currentPosition + 0.1f);
+			SceneGraph::GetInstance()->GetGameObject(selectedObject.c_str())->SetPosition(glm::vec3(currentPosition, SceneGraph::GetInstance()->GetGameObject(selectedObject.c_str())->GetPosition().y, SceneGraph::GetInstance()->GetGameObject(selectedObject.c_str())->GetPosition().z));
 		ImGui::End();
 	}
 

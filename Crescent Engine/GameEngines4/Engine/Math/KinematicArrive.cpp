@@ -4,10 +4,10 @@
 
 KinematicArrive::KinematicArrive() {
   result = new KinematicSteeringOutput();
-  targetPosition = glm::vec3(0.0f, -1.0f, 0.0f);
+  targetPosition = glm::vec3(-6.0f, -1.0f, 0.0f);
   maxSpeed = 5.0f;
   radius = 3.0f;
-  timeToTarget = 0.5f;
+  timeToTarget = 2.5f;
 }
 
 KinematicArrive::~KinematicArrive() {

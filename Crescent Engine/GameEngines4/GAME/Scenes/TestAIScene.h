@@ -19,5 +19,8 @@ public:
 
 private:
 	LightSource* lightSource;
+	std::string selectedObject;
+	bool propertiesWindowOpen;
+	bool hasObjects;
 };
 #endif

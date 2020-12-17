@@ -37,6 +37,14 @@ void KeyEventListener::Update(SDL_Event e_) {
 		NotifyOfKeyPressed(e_.key.keysym);
 	}
 
+	else if (e_.key.keysym.scancode == SDL_SCANCODE_UP) {
+		NotifyOfKeyPressed(e_.key.keysym);
+	}
+
+	else if (e_.key.keysym.scancode == SDL_SCANCODE_DOWN) {
+		NotifyOfKeyPressed(e_.key.keysym);
+	}
+
 	const Uint8* keystate = SDL_GetKeyboardState(NULL);
 	if (keystate[SDL_SCANCODE_W] && keystate[SDL_SCANCODE_D]) {
 		engineInstance->DoubleKeyPressedRight();

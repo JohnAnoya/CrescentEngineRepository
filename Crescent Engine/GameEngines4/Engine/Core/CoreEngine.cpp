@@ -11,6 +11,7 @@ CoreEngine::CoreEngine()
 	gameInterface = nullptr;
 	currentSceneNum = 0; 
 	camera = nullptr;
+	CameraSpeedIncrement = 15.0f; 
 }
 
 CoreEngine::~CoreEngine()
@@ -180,36 +181,48 @@ void CoreEngine::NotifyOfMouseScroll(int y_) {
 
 void CoreEngine::NotifyOfKeyPressed(SDL_Keysym keyPressed_) {
  	if (keyPressed_.scancode == SDL_SCANCODE_W) {
-		camera->SetPosition(glm::vec3(camera->GetPosition().x, camera->GetPosition().y, camera->GetPosition().z + (-15.0f) * timer.GetDeltaTime()));
+		camera->SetPosition(glm::vec3(camera->GetPosition().x, camera->GetPosition().y, camera->GetPosition().z + (-CameraSpeedIncrement) * timer.GetDeltaTime()));
 	 }
 
 	else if (keyPressed_.scancode == SDL_SCANCODE_A) {
-		camera->SetPosition(glm::vec3(camera->GetPosition().x + (-15.0f) * timer.GetDeltaTime(), camera->GetPosition().y, camera->GetPosition().z));
+		camera->SetPosition(glm::vec3(camera->GetPosition().x + (-CameraSpeedIncrement) * timer.GetDeltaTime(), camera->GetPosition().y, camera->GetPosition().z));
 	}
 
 	else if (keyPressed_.scancode == SDL_SCANCODE_S) {
-	   camera->SetPosition(glm::vec3(camera->GetPosition().x, camera->GetPosition().y, camera->GetPosition().z + (15.0f) * timer.GetDeltaTime()));
+	   camera->SetPosition(glm::vec3(camera->GetPosition().x, camera->GetPosition().y, camera->GetPosition().z + (CameraSpeedIncrement) * timer.GetDeltaTime()));
 	}
 
 	else if (keyPressed_.scancode == SDL_SCANCODE_D) {
-		camera->SetPosition(glm::vec3(camera->GetPosition().x + (15.0f) * timer.GetDeltaTime(), camera->GetPosition().y, camera->GetPosition().z));
+		camera->SetPosition(glm::vec3(camera->GetPosition().x + (CameraSpeedIncrement) * timer.GetDeltaTime(), camera->GetPosition().y, camera->GetPosition().z));
 	} 
 
 	else if (keyPressed_.scancode == SDL_SCANCODE_Q) {
-		camera->SetPosition(glm::vec3(camera->GetPosition().x, camera->GetPosition().y + (15.0f) * timer.GetDeltaTime(), camera->GetPosition().z));
+		camera->SetPosition(glm::vec3(camera->GetPosition().x, camera->GetPosition().y + (CameraSpeedIncrement) * timer.GetDeltaTime(), camera->GetPosition().z));
 	}
 
 	else if (keyPressed_.scancode == SDL_SCANCODE_E) {
-		camera->SetPosition(glm::vec3(camera->GetPosition().x, camera->GetPosition().y + (-15.0f) * timer.GetDeltaTime(), camera->GetPosition().z));
+		camera->SetPosition(glm::vec3(camera->GetPosition().x, camera->GetPosition().y + (-CameraSpeedIncrement) * timer.GetDeltaTime(), camera->GetPosition().z));
+	}
+
+	else if (keyPressed_.scancode == SDL_SCANCODE_UP) {
+		if (CameraSpeedIncrement <= 50.0f) {
+			CameraSpeedIncrement += 2.0f;
+		}
+	}
+
+	else if (keyPressed_.scancode == SDL_SCANCODE_DOWN) {
+		if (CameraSpeedIncrement > 1.0f) {
+			CameraSpeedIncrement -= 2.0f;
+		}
 	}
 }
 
 void CoreEngine::DoubleKeyPressedRight() {
-	camera->SetPosition(glm::vec3(camera->GetPosition().x + (15.0f) * timer.GetDeltaTime(), camera->GetPosition().y, camera->GetPosition().z + (-15.0f) * timer.GetDeltaTime()));
+	camera->SetPosition(glm::vec3(camera->GetPosition().x + (CameraSpeedIncrement) * timer.GetDeltaTime(), camera->GetPosition().y, camera->GetPosition().z + (-CameraSpeedIncrement) * timer.GetDeltaTime()));
 }
 
 void CoreEngine::DoubleKeyPressedLeft() {
-	camera->SetPosition(glm::vec3(camera->GetPosition().x + (-15.0f) * timer.GetDeltaTime(), camera->GetPosition().y, camera->GetPosition().z + (-15.0f) * timer.GetDeltaTime()));
+	camera->SetPosition(glm::vec3(camera->GetPosition().x + (-CameraSpeedIncrement) * timer.GetDeltaTime(), camera->GetPosition().y, camera->GetPosition().z + (-CameraSpeedIncrement) * timer.GetDeltaTime()));
 }
 
 void CoreEngine::Exit()

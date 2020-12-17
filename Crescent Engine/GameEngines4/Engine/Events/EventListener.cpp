@@ -33,6 +33,8 @@ void EventListener::Update() {
 					case SDL_SCANCODE_D:
 					case SDL_SCANCODE_Q:
 					case SDL_SCANCODE_E:
+					case SDL_SCANCODE_UP:
+					case SDL_SCANCODE_DOWN:
 						KeyEventListener::Update(sdlEvent);
 						break;
 
