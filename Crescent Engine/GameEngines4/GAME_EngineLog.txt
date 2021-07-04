@@ -1,8 +1,3 @@
 [INFO]: Creating Start Scene in: StartScene.cpp on line: 16
 [INFO]: Engine launched successfully in: CoreEngine.cpp  on line: 59
 [INFO]: Creating Game Scene in: GameScene.cpp on line: 52
-[ERROR]: Surface for texture Apple_Body failed to be created.in: TextureHandler.cpp on line: 42
-[ERROR]: Surface for texture Apple_Branch failed to be created.in: TextureHandler.cpp on line: 42
-[ERROR]: Cannot open OBJ file: ./Resources/Models/Apple.objin: LoadOBJModel.cpp on line: 30
-[ERROR]: Surface for texture diceMap failed to be created.in: TextureHandler.cpp on line: 42
-[ERROR]: Cannot open OBJ file: ./Resources/Models/Dice.objin: LoadOBJModel.cpp on line: 30
